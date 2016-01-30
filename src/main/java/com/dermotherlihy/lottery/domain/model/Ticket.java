@@ -7,19 +7,26 @@ import java.util.List;
  * Created by dermot.herlihy on 28/01/2016.
  */
 @Entity
-@Table(name ="TICKETS")
+@Table(name="tickets")
 public class Ticket {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
 
-    @OneToMany(targetEntity=Line.class,
-            fetch=FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Line> lines;
 
     private Status status;
 
+    public Ticket(){
+
+    }
+
+    public Ticket(List<Line> lines, Status status) {
+        this.lines = lines;
+        this.status = status;
+    }
 
     public long getId() {
         return id;

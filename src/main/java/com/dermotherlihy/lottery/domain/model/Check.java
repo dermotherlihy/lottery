@@ -7,8 +7,7 @@ import java.util.List;
  * Created by dermot.herlihy on 29/01/2016.
  */
 
-@Entity
-@Table(name ="CHECKS")
+
 public class Check {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)

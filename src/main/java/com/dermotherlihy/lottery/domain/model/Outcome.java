@@ -8,7 +8,6 @@ import javax.persistence.*;
  * Created by dermot.herlihy on 29/01/2016.
  **/
 @Entity
-@Table(name ="OUTCOMES")
 public class Outcome {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -19,6 +18,9 @@ public class Outcome {
     private Line line;
 
     private int result;
+
+    protected Outcome(){
+    }
 
     public Outcome(Line line) {
         Assert.notNull(line, "Line should never be null");
