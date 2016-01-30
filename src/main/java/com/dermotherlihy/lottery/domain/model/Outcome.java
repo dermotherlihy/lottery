@@ -25,10 +25,11 @@ public class Outcome {
     public Outcome(Line line) {
         Assert.notNull(line, "Line should never be null");
         this.line = line;
-        calculateResult();
+        generateResult();
     }
 
-    private void calculateResult(){
+    //Maybe move this into factory
+    private void generateResult(){
         if(line.getFirstNumber() + line.getSecondNumber() + line.getThirdNumber() == 2){
             result = 10;
         }
@@ -54,5 +55,24 @@ public class Outcome {
         return result;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
+        Outcome outcome = (Outcome) o;
+
+        if (id != outcome.id) return false;
+        if (result != outcome.result) return false;
+        return !(line != null ? !line.equals(outcome.line) : outcome.line != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result1 = (int) (id ^ (id >>> 32));
+        result1 = 31 * result1 + (line != null ? line.hashCode() : 0);
+        result1 = 31 * result1 + result;
+        return result1;
+    }
 }

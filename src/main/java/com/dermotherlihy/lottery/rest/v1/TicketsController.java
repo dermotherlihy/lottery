@@ -7,6 +7,8 @@ import com.dermotherlihy.lottery.rest.v1.resource.TicketRequest;
 import com.dermotherlihy.lottery.rest.v1.resource.TicketResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,8 +16,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -106,7 +106,7 @@ public class TicketsController {
         log.info("Post Method Hit");
 
         Ticket ticket = ticketService.createTicket(resource.getNumberOfLines());
-        //TicketResponse = new TicketResponse(ticket);
+
 
         TicketResponse ticketResponse = new TicketResponse("hello from the other side");
         return new ResponseEntity<TicketResponse>(ticketResponse, HttpStatus.CREATED);
@@ -122,8 +122,10 @@ public class TicketsController {
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
-    public List<TicketResponse> getTickets() {
-        return new ArrayList<TicketResponse>();
+    public Page<TicketResponse> getTickets(Pageable pageRequest) {
+
+        Page<Ticket> tickets = ticketService.getTickets(pageRequest);
+        return null;
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")

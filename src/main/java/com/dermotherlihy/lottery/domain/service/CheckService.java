@@ -7,5 +7,5 @@ import com.dermotherlihy.lottery.domain.model.Check;
  */
 public interface CheckService {
 
-    Check createTicketCheck(long ticketId);
+    Check createCheck(long ticketId);
 }

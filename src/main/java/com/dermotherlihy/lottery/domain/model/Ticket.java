@@ -51,4 +51,25 @@ public class Ticket {
     public void setStatus(Status status) {
         this.status = status;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Ticket ticket = (Ticket) o;
+
+        if (id != ticket.id) return false;
+        if (lines != null ? !lines.equals(ticket.lines) : ticket.lines != null) return false;
+        return status == ticket.status;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (lines != null ? lines.hashCode() : 0);
+        result = 31 * result + (status != null ? status.hashCode() : 0);
+        return result;
+    }
 }
