@@ -3,6 +3,8 @@ package com.dermotherlihy.lottery.rest.v1;
 import com.dermotherlihy.lottery.rest.v1.resource.LinesRequest;
 import com.dermotherlihy.lottery.rest.v1.resource.TicketRequest;
 import com.dermotherlihy.lottery.rest.v1.resource.TicketResponse;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -88,12 +90,12 @@ Ticket will then be checked. Once ticket has been checked, status is updated to 
 public class TicketsController {
 
     public static final String URL = "/v1/tickets";
+    private static Log log = LogFactory.getLog(TicketsController.class);
 
     @RequestMapping(method = RequestMethod.POST)
-    @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
-    public TicketResponse createTicket(@RequestBody TicketRequest resource) {
-        return new TicketResponse();
+    public void createTicket(@RequestBody TicketRequest resource) {
+        log.info("Post Method Hit");
     }
 
     @RequestMapping(method = RequestMethod.POST, value ="/{id}/lines")

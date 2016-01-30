@@ -5,13 +5,14 @@ package com.dermotherlihy.lottery.rest.v1.resource;
  */
 public class TicketRequest {
 
-    private int numberOfLines;
+    private Integer numberOfLines;
 
-    public TicketRequest(int numberOfLines) {
-        this.numberOfLines = numberOfLines;
+
+    public Integer getNumberOfLines() {
+        return numberOfLines;
     }
 
-    public int getNumberOfLines() {
-        return numberOfLines;
+    public void setNumberOfLines(Integer numberOfLines) {
+        this.numberOfLines = numberOfLines;
     }
 }
