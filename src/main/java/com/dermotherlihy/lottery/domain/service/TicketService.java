@@ -11,8 +11,8 @@ import java.util.List;
 public interface TicketService {
 
     public Ticket createTicket(Ticket ticket);
-    public Ticket getTicket(int ticketId);
-    public List<Ticket> getTickets(int ticketId);
+    public Ticket getTicket(long ticketId);
+    public List<Ticket> getTickets(long ticketId);
     public Ticket addTicketLines(List<Line> lines);
-    public Ticket playTicket(int ticketId);
+    public Ticket playTicket(long ticketId);
 }

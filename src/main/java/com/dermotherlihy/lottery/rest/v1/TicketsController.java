@@ -87,6 +87,8 @@ Ticket will then be checked. Once ticket has been checked, status is updated to 
                     produces = MediaType.APPLICATION_JSON_VALUE)
 public class TicketsController {
 
+    public static final String URL = "/v1/tickets";
+
     @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)

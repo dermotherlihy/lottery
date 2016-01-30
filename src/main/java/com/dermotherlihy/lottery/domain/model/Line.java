@@ -1,29 +1,44 @@
 package com.dermotherlihy.lottery.domain.model;
 
+import javax.persistence.*;
+
 /**
  * Created by dermot.herlihy on 28/01/2016.
  */
+@Entity
+@Table(name ="LINES")
 public class Line {
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private long id;
+    private Integer firstNumber;
+    private Integer secondNumber;
+    private Integer thirdNumber;
 
-    private Number firstNumber;
-    private Number secondNumber;
-    private Number thirdNumber;
+    public Line(){
 
-    public Line(Number numberOne, Number numberTwo, Number numberThree) {
+    }
+
+    public Line(Integer numberOne, Integer numberTwo, Integer numberThree) {
         this.firstNumber = numberOne;
         this.secondNumber = numberTwo;
         this.thirdNumber = numberThree;
     }
 
-    public Line(Number numberOne, Number numberTwo, Number numberThree, Integer result) {
-        this.firstNumber = numberOne;
-        this.secondNumber = numberTwo;
-        this.thirdNumber = numberThree;
-
+    public long getId() {
+        return id;
     }
 
+    public Integer getFirstNumber() {
+        return firstNumber;
+    }
 
+    public Integer getSecondNumber() {
+        return secondNumber;
+    }
 
-
+    public Integer getThirdNumber() {
+        return thirdNumber;
+    }
 }
 
