@@ -1,7 +1,5 @@
-package com.dermotherlihy.lottery.domain;
+package com.dermotherlihy.lottery.domain.model;
 
-import com.dermotherlihy.lottery.domain.model.Line;
-import com.dermotherlihy.lottery.domain.model.Outcome;
 import org.junit.Assert;
 import org.junit.Test;
 

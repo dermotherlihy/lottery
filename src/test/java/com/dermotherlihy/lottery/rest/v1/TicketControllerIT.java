@@ -1,6 +1,7 @@
 package com.dermotherlihy.lottery.rest.v1;
 
 import com.dermotherlihy.lottery.Application;
+import com.dermotherlihy.lottery.rest.v1.resource.TicketRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.http.ContentType;
@@ -36,10 +37,9 @@ public class TicketControllerIT {
     @Test
     public void createCreateTicketSucceeds() throws JsonProcessingException {
 
-        //TicketRequest ticketRequest = new TicketRequest();
-        String myJson = "{\"numberOfLines\":\"4\"}";
+        TicketRequest ticketRequest = new TicketRequest(4);
         given().header("Accept", "application/json")
-                .body(myJson)
+                .body(ticketRequest)
                 .contentType(ContentType.JSON)
                 .when()
                 .post(TicketsController.URL)

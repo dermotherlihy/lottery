@@ -1,14 +1,19 @@
 package com.dermotherlihy.lottery.rest.v1;
 
+import com.dermotherlihy.lottery.domain.model.Ticket;
+import com.dermotherlihy.lottery.domain.service.TicketService;
 import com.dermotherlihy.lottery.rest.v1.resource.LinesRequest;
 import com.dermotherlihy.lottery.rest.v1.resource.TicketRequest;
 import com.dermotherlihy.lottery.rest.v1.resource.TicketResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -92,17 +97,27 @@ public class TicketsController {
     public static final String URL = "/v1/tickets";
     private static Log log = LogFactory.getLog(TicketsController.class);
 
+    @Resource
+    private TicketService ticketService;
+
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public void createTicket(@RequestBody TicketRequest resource) {
+    public HttpEntity<TicketResponse> createTicket(@RequestBody TicketRequest resource) {
         log.info("Post Method Hit");
+
+        Ticket ticket = ticketService.createTicket(resource.getNumberOfLines());
+        //TicketResponse = new TicketResponse(ticket);
+
+        TicketResponse ticketResponse = new TicketResponse("hello from the other side");
+        return new ResponseEntity<TicketResponse>(ticketResponse, HttpStatus.CREATED);
+
     }
 
     @RequestMapping(method = RequestMethod.POST, value ="/{id}/lines")
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
     public TicketResponse addLinesToTicket(@RequestBody LinesRequest request) {
-        return new TicketResponse();
+        return new TicketResponse("hello");
     }
 
     @RequestMapping(method = RequestMethod.GET)
@@ -114,7 +129,7 @@ public class TicketsController {
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     @ResponseBody
     public TicketResponse getTicketById(@PathVariable Integer ticketId) {
-        return new TicketResponse();
+        return new TicketResponse("hello");
     }
 
 

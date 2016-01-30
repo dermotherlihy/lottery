@@ -10,9 +10,11 @@ import java.util.List;
  */
 public interface TicketService {
 
-    public Ticket createTicket(Ticket ticket);
+    public Ticket createTicket(int numberOfLines);
     public Ticket getTicket(long ticketId);
     public List<Ticket> getTickets(long ticketId);
     public Ticket addTicketLines(List<Line> lines);
     public Ticket playTicket(long ticketId);
+
+
 }
