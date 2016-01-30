@@ -2,6 +2,7 @@ package com.dermotherlihy.lottery.rest.v1;
 
 import com.dermotherlihy.lottery.domain.model.Ticket;
 import com.dermotherlihy.lottery.domain.service.TicketService;
+import com.dermotherlihy.lottery.rest.v1.mapper.response.TicketResponseMapper;
 import com.dermotherlihy.lottery.rest.v1.resource.LinesRequest;
 import com.dermotherlihy.lottery.rest.v1.resource.TicketRequest;
 import com.dermotherlihy.lottery.rest.v1.resource.TicketResponse;
@@ -16,6 +17,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 
 /**
@@ -52,41 +56,8 @@ Ticket will always have a status. When ticket is created status will be new/some
 Ticket will then be checked. Once ticket has been checked, status is updated to used
 
 
- Lottery Rules
+**/
 
- You have a series of lines on a ticket with 3 numbers, each of which has a value of 0, 1, or 2.
-
- For each ticket if the sum of the values is 2, the result is 10. Otherwise if they are all the
-
- same, the result is 5. Otherwise so long as both 2nd and 3rd numbers are different from the
-
- 1st, the result is 1. Otherwise the result is 0.
-
- Implementation
-
- Implement a REST interface to generate a ticket with n lines. Additionally we will need to
-
- have the ability to check the status of lines on a ticket. We would like the lines sorted into
-
- outcomes before being returned. It should be possible for a ticket to be amended with n
-
- additional lines. Once the status of a ticket has been checked it should not be possible to
-
- amend.
-
- We would like tested, clean code to be returned.
-
-
- Have validation at resource level
-
- *
- *
- */
-
-/**
- *
- * Maybe add interface here
- */
 
 
 @RestController
@@ -100,15 +71,16 @@ public class TicketsController {
     @Resource
     private TicketService ticketService;
 
+    @Resource
+    private TicketResponseMapper ticketResponseMapper;
+
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public HttpEntity<TicketResponse> createTicket(@RequestBody TicketRequest resource) {
         log.info("Post Method Hit");
-
         Ticket ticket = ticketService.createTicket(resource.getNumberOfLines());
-
-
-        TicketResponse ticketResponse = new TicketResponse("hello from the other side");
+        TicketResponse ticketResponse = ticketResponseMapper.mapTicketResponse(ticket);
+        ticketResponse.add(linkTo(methodOn(TicketsController.class)).withSelfRel());
         return new ResponseEntity<TicketResponse>(ticketResponse, HttpStatus.CREATED);
 
     }
@@ -117,7 +89,7 @@ public class TicketsController {
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
     public TicketResponse addLinesToTicket(@RequestBody LinesRequest request) {
-        return new TicketResponse("hello");
+        return null;
     }
 
     @RequestMapping(method = RequestMethod.GET)
@@ -131,7 +103,7 @@ public class TicketsController {
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     @ResponseBody
     public TicketResponse getTicketById(@PathVariable Integer ticketId) {
-        return new TicketResponse("hello");
+        return null;
     }
 
 
