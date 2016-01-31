@@ -1,4 +1,4 @@
-package com.dermotherlihy.lottery;
+package com.dermotherlihy.lottery.utils;
 
 import com.dermotherlihy.lottery.domain.model.Line;
 import com.dermotherlihy.lottery.domain.model.Status;

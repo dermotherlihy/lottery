@@ -1,6 +1,7 @@
 package com.dermotherlihy.lottery.domain.service;
 
 import com.dermotherlihy.lottery.domain.model.Ticket;
+import com.google.common.base.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -10,7 +11,7 @@ import org.springframework.data.domain.Pageable;
 public interface TicketService {
 
      Ticket createTicket(int numberOfLines);
-     Ticket getTicket(long ticketId);
+     Optional<Ticket> getTicket(long ticketId);
      Page<Ticket> getTickets(Pageable pageRequest);
      Ticket addLines(long ticketId, int numberOfLines);
 

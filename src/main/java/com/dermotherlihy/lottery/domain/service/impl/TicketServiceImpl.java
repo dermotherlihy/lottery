@@ -1,5 +1,7 @@
 package com.dermotherlihy.lottery.domain.service.impl;
 
+import com.dermotherlihy.lottery.domain.exception.MaxLinesExceededException;
+import com.dermotherlihy.lottery.domain.exception.NotFoundException;
 import com.dermotherlihy.lottery.domain.exception.TicketExpiredException;
 import com.dermotherlihy.lottery.domain.factory.LineFactory;
 import com.dermotherlihy.lottery.domain.model.Line;
@@ -7,12 +9,12 @@ import com.dermotherlihy.lottery.domain.model.Status;
 import com.dermotherlihy.lottery.domain.model.Ticket;
 import com.dermotherlihy.lottery.domain.repository.TicketsRepository;
 import com.dermotherlihy.lottery.domain.service.TicketService;
+import com.google.common.base.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,6 +23,7 @@ import java.util.List;
 @Service
 public class TicketServiceImpl implements TicketService{
 
+    private static final int MAX_LINES = 27;
     @Resource
     private TicketsRepository ticketsRepository;
     @Resource
@@ -29,33 +32,47 @@ public class TicketServiceImpl implements TicketService{
 
     @Override
     public Ticket createTicket(int numberOfLines) {
-        List<Line> lines = generateLines(numberOfLines);
-        Ticket ticket = new Ticket(lines, Status.NEW);
-        return ticketsRepository.save(ticket);
+       if(numberOfLines > MAX_LINES){
+           throw new MaxLinesExceededException("Max Lines Allowed is 27");
+       }else{
+           List<Line> lines = lineFactory.createUniqueLines(numberOfLines);
+           Ticket ticket = new Ticket(lines, Status.NEW);
+           return ticketsRepository.createTicket(ticket);
+       }
     }
 
 
     @Override
-    public Ticket getTicket(long ticketId) {
-        return ticketsRepository.findOne(ticketId);
+    public Optional<Ticket> getTicket(long ticketId) {
+        return ticketsRepository.findTicket(ticketId);
     }
 
     @Override
     public Page<Ticket> getTickets(Pageable pageRequest) {
-        return ticketsRepository.findAll(pageRequest);
+        return ticketsRepository.findTickets(pageRequest);
     }
 
     @Override
     public Ticket addLines(long ticketId, int numberOfLines) {
-        Ticket ticket = ticketsRepository.findOne(ticketId);
-        if(Status.NEW == ticket.getStatus()){
-            List<Line> lines = generateLines(numberOfLines);
-            ticket.getLines().addAll(lines);
-            ticket=  ticketsRepository.save(ticket);
+        Optional<Ticket> optionalTicket = ticketsRepository.findTicket(ticketId);
+        if(optionalTicket.isPresent()){
+            Ticket ticket = optionalTicket.get();
+            if(Status.NEW == ticket.getStatus()){
+                if(ticket.getLines().size() + numberOfLines > MAX_LINES){
+                    throw new MaxLinesExceededException("Max Lines Allowed is 27");
+                }else{
+                    List<Line> lines = lineFactory.addLines(ticket.getLines(), numberOfLines);
+                    ticket.setLines(lines);
+                    ticket= ticketsRepository.updateTicket(ticket);
+                }
+            }else{
+                throw new TicketExpiredException("New Ticket Required");
+            }
+            return ticket;
         }else{
-            throw new TicketExpiredException();
+            throw new NotFoundException("Please specify a valid ticket id");
         }
-        return ticket;
+
     }
 
     public void setLineFactory(LineFactory lineFactory) {
@@ -65,13 +82,4 @@ public class TicketServiceImpl implements TicketService{
     public void setTicketsRepository(TicketsRepository ticketsRepository) {
         this.ticketsRepository = ticketsRepository;
     }
-
-    private List<Line> generateLines(int numberOfLines) {
-        List<Line> lines = new ArrayList<Line>();
-        for (int i = 0; i< numberOfLines; i++){
-            lines.add(lineFactory.createLine());
-        }
-        return lines;
-    }
-
 }

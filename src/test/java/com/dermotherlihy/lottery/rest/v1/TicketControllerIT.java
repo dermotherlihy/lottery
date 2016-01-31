@@ -1,7 +1,7 @@
 package com.dermotherlihy.lottery.rest.v1;
 
 import com.dermotherlihy.lottery.Application;
-import com.dermotherlihy.lottery.rest.v1.resource.TicketRequest;
+import com.dermotherlihy.lottery.rest.v1.resource.request.TicketRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.http.ContentType;

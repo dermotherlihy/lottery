@@ -1,4 +1,4 @@
-package com.dermotherlihy.lottery.rest.v1.resource;
+package com.dermotherlihy.lottery.rest.v1.resource.response;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

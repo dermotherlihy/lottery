@@ -1,11 +1,11 @@
 package com.dermotherlihy.lottery.rest.v1.response.mapper;
 
-import com.dermotherlihy.lottery.TicketTestData;
+import com.dermotherlihy.lottery.utils.TicketTestData;
 import com.dermotherlihy.lottery.domain.model.Line;
 import com.dermotherlihy.lottery.domain.model.Ticket;
-import com.dermotherlihy.lottery.rest.v1.mapper.response.TicketResponseMapper;
-import com.dermotherlihy.lottery.rest.v1.resource.LineResponse;
-import com.dermotherlihy.lottery.rest.v1.resource.TicketResponse;
+import com.dermotherlihy.lottery.rest.v1.mapper.TicketResponseMapper;
+import com.dermotherlihy.lottery.rest.v1.resource.response.LineResponse;
+import com.dermotherlihy.lottery.rest.v1.resource.response.TicketResponse;
 import org.junit.Assert;
 import org.junit.Test;
 

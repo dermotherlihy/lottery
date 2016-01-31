@@ -15,7 +15,7 @@ public class Check {
     private long id;
     private long ticketId;
     @OneToMany(targetEntity=Outcome.class,
-            fetch= FetchType.EAGER)
+            fetch= FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Outcome> outcomes;
 
     public Check(){

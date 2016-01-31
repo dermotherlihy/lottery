@@ -7,8 +7,7 @@ import static org.hamcrest.core.Is.is;
 
 
 /**
- * Test 27 combinations
- * May rename tests
+ * ToDo : Maybe rename some of tests
  */
 public class OutcomeUTest {
 
