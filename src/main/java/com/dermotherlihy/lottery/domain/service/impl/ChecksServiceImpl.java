@@ -36,13 +36,18 @@ public class ChecksServiceImpl implements ChecksService {
         Optional<Ticket> optionalTicket = ticketsRepository.findTicket(ticketId);
         if(optionalTicket.isPresent()){
             Ticket ticket = optionalTicket.get();
-            List<Outcome> outcomeList = createOutcomes(ticket);
-            Collections.sort(outcomeList);
-            Check check = new Check(ticketId, outcomeList);
-            ticket.setStatus(Status.USED);
-            ticketsRepository.updateTicket(ticket);
-            checksRepository.createCheck(check);
-            return check;
+            if(Status.NEW.equals(ticket.getStatus())){
+                List<Outcome> outcomeList = createOutcomes(ticket);
+                Collections.sort(outcomeList);
+                Check check = new Check(ticketId, outcomeList);
+                ticket.setStatus(Status.USED);
+                ticketsRepository.updateTicket(ticket);
+                checksRepository.createCheck(check);
+                return check;
+            }else{
+                return checksRepository.findCheckByTicketId(ticket.getId());
+            }
+
         }else{
             throw new NotFoundException("Please specify a valid ticket id");
         }

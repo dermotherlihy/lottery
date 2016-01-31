@@ -27,4 +27,9 @@ public class ChecksRepositoryImpl implements ChecksRepository {
     public Optional<Check> findCheck(long id) {
         return Optional.fromNullable(checksDAO.findOne(id));
     }
+
+    @Override
+    public Check findCheckByTicketId(long ticketId) {
+        return checksDAO.findByTicketId(ticketId);
+    }
 }

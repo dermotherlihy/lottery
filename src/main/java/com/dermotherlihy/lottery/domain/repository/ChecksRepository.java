@@ -10,4 +10,6 @@ public interface ChecksRepository  {
     Check createCheck(Check check);
 
     Optional<Check> findCheck(long id);
+
+    Check findCheckByTicketId(long ticketId);
 }

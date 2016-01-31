@@ -21,6 +21,7 @@ import java.util.List;
 
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.notNullValue;
+import static org.mockito.Mockito.never;
 
 /**
  * Created by dermot.herlihy on 30/01/2016.
@@ -42,6 +43,9 @@ public class ChecksServiceImplUTest {
     private Ticket ticketMock;
 
     @Mock
+    private Check checkMock;
+
+    @Mock
     private Outcome outcomeMock;
 
     private ChecksServiceImpl testObj;
@@ -56,12 +60,31 @@ public class ChecksServiceImplUTest {
     }
 
     @Test
+    public void testCreateReturnsPreviousCheckWhenUsed() {
+        Mockito.when(ticketsRepositoryMock.findTicket(TICKET_ID)).thenReturn(Optional.of(ticketMock));
+        Mockito.when(ticketMock.getStatus()).thenReturn(Status.USED);
+        Mockito.when(ticketMock.getId()).thenReturn(TICKET_ID);
+
+        Mockito.when(checksRepositoryMock.findCheckByTicketId(TICKET_ID)).thenReturn(checkMock);
+
+        Check check = testObj.createCheck(TICKET_ID);
+
+        Mockito.verify(ticketMock,never()).setStatus(Status.USED);
+        Mockito.verify(ticketsRepositoryMock,never()).updateTicket(ticketMock);
+        Assert.assertThat(check, is(checkMock));
+
+    }
+
+
+    @Test
     public void testCreateCheckUpdatesTicketToUsed() {
         Line line = new Line(0, 1, 2);
 
         Mockito.when(ticketsRepositoryMock.findTicket(TICKET_ID)).thenReturn(Optional.of(ticketMock));
         Mockito.when(ticketMock.getLines()).thenReturn(Lists.newArrayList(line));
+        Mockito.when(ticketMock.getStatus()).thenReturn(Status.NEW);
         Mockito.when(outcomeFactoryMock.createOutcome(line)).thenReturn(outcomeMock);
+
 
         testObj.createCheck(TICKET_ID);
 
@@ -74,7 +97,7 @@ public class ChecksServiceImplUTest {
     public void testCreateCheckGeneratesOutcomes(){
         Line line = new Line(0,1,2);
         ArgumentCaptor<Check> checkCapture = ArgumentCaptor.forClass(Check.class);
-
+        Mockito.when(ticketMock.getStatus()).thenReturn(Status.NEW);
         Mockito.when(ticketsRepositoryMock.findTicket(TICKET_ID)).thenReturn(Optional.of(ticketMock));
         Mockito.when(ticketMock.getLines()).thenReturn(Lists.newArrayList(line));
         Mockito.when(outcomeFactoryMock.createOutcome(line)).thenReturn(outcomeMock);
@@ -96,6 +119,7 @@ public class ChecksServiceImplUTest {
 
         ArgumentCaptor<Check> checkCapture = ArgumentCaptor.forClass(Check.class);
         Mockito.when(ticketsRepositoryMock.findTicket(TICKET_ID)).thenReturn(Optional.of(ticketMock));
+        Mockito.when(ticketMock.getStatus()).thenReturn(Status.NEW);
         Mockito.when(ticketMock.getLines()).thenReturn(lines);
         Mockito.when(outcomeFactoryMock.createOutcome(outcome0.getLine())).thenReturn(outcome0);
         Mockito.when(outcomeFactoryMock.createOutcome(outcome10.getLine())).thenReturn(outcome10);
