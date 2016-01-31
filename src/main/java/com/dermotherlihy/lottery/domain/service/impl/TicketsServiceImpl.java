@@ -8,7 +8,7 @@ import com.dermotherlihy.lottery.domain.model.Line;
 import com.dermotherlihy.lottery.domain.model.Status;
 import com.dermotherlihy.lottery.domain.model.Ticket;
 import com.dermotherlihy.lottery.domain.repository.TicketsRepository;
-import com.dermotherlihy.lottery.domain.service.TicketService;
+import com.dermotherlihy.lottery.domain.service.TicketsService;
 import com.google.common.base.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,7 +21,7 @@ import java.util.List;
  * Created by dermot.herlihy on 28/01/2016.
  */
 @Service
-public class TicketServiceImpl implements TicketService{
+public class TicketsServiceImpl implements TicketsService {
 
     private static final int MAX_LINES = 27;
     @Resource

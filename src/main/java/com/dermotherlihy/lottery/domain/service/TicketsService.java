@@ -8,7 +8,7 @@ import org.springframework.data.domain.Pageable;
 /**
  * Created by dermot.herlihy on 28/01/2016.
  */
-public interface TicketService {
+public interface TicketsService {
 
      Ticket createTicket(int numberOfLines);
      Optional<Ticket> getTicket(long ticketId);

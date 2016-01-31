@@ -5,7 +5,7 @@ import com.dermotherlihy.lottery.domain.factory.OutcomeFactory;
 import com.dermotherlihy.lottery.domain.model.*;
 import com.dermotherlihy.lottery.domain.repository.ChecksRepository;
 import com.dermotherlihy.lottery.domain.repository.TicketsRepository;
-import com.dermotherlihy.lottery.domain.service.CheckService;
+import com.dermotherlihy.lottery.domain.service.ChecksService;
 import com.google.common.base.Optional;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +18,7 @@ import java.util.List;
  * Created by dermot.herlihy on 29/01/2016.
  */
 @Service
-public class CheckServiceImpl implements CheckService{
+public class ChecksServiceImpl implements ChecksService {
 
     @Resource
     private TicketsRepository ticketsRepository;

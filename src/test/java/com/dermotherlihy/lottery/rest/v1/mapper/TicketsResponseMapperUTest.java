@@ -3,7 +3,6 @@ package com.dermotherlihy.lottery.rest.v1.mapper;
 import com.dermotherlihy.lottery.utils.TicketTestData;
 import com.dermotherlihy.lottery.domain.model.Line;
 import com.dermotherlihy.lottery.domain.model.Ticket;
-import com.dermotherlihy.lottery.rest.v1.mapper.TicketResponseMapper;
 import com.dermotherlihy.lottery.rest.v1.resource.response.LineResponse;
 import com.dermotherlihy.lottery.rest.v1.resource.response.TicketResponse;
 import org.junit.Assert;
@@ -16,10 +15,10 @@ import static org.hamcrest.core.Is.is;
 /**
  * Created by dermot.herlihy on 30/01/2016.
  */
-public class TicketResponseMapperUTest {
+public class TicketsResponseMapperUTest {
 
     private static final String NEW = "NEW";
-    private TicketResponseMapper testObj = new TicketResponseMapper();
+    private TicketsResponseMapper testObj = new TicketsResponseMapper();
 
     @Test
     public void testTicketResponseCreation(){

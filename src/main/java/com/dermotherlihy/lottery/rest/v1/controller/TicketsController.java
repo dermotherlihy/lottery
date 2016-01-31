@@ -4,8 +4,8 @@ import com.dermotherlihy.lottery.domain.exception.MaxLinesExceededException;
 import com.dermotherlihy.lottery.domain.exception.NotFoundException;
 import com.dermotherlihy.lottery.domain.exception.TicketExpiredException;
 import com.dermotherlihy.lottery.domain.model.Ticket;
-import com.dermotherlihy.lottery.domain.service.TicketService;
-import com.dermotherlihy.lottery.rest.v1.mapper.TicketResponseMapper;
+import com.dermotherlihy.lottery.domain.service.TicketsService;
+import com.dermotherlihy.lottery.rest.v1.mapper.TicketsResponseMapper;
 import com.dermotherlihy.lottery.rest.v1.resource.request.LinesRequest;
 import com.dermotherlihy.lottery.rest.v1.resource.request.TicketRequest;
 import com.dermotherlihy.lottery.rest.v1.resource.response.TicketResponse;
@@ -41,14 +41,14 @@ public class TicketsController {
     public static final String URL = "/v1/tickets";
 
     @Autowired
-    private TicketService ticketService;
+    private TicketsService ticketsService;
 
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public HttpEntity<TicketResponse> createTicket(@RequestBody TicketRequest resource) {
-        Ticket ticket = ticketService.createTicket(resource.getNumberOfLines());
-        TicketResponse ticketResponse = TicketResponseMapper.mapTicketResponse(ticket);
+        Ticket ticket = ticketsService.createTicket(resource.getNumberOfLines());
+        TicketResponse ticketResponse = TicketsResponseMapper.mapTicketResponse(ticket);
         ticketResponse.add(linkTo(methodOn(TicketsController.class).getTicketById(ticket.getId())).withSelfRel());
         return new ResponseEntity<TicketResponse>(ticketResponse, HttpStatus.CREATED);
 
@@ -58,8 +58,8 @@ public class TicketsController {
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
     public HttpEntity<TicketResponse> addLinesToTicket(@PathVariable long id, @RequestBody LinesRequest request) {
-        Ticket ticket =  ticketService.addLines(id,request.getNumberOfLines());
-        TicketResponse ticketResponse = TicketResponseMapper.mapTicketResponse(ticket);
+        Ticket ticket =  ticketsService.addLines(id,request.getNumberOfLines());
+        TicketResponse ticketResponse = TicketsResponseMapper.mapTicketResponse(ticket);
         ticketResponse.add(linkTo(methodOn(TicketsController.class).getTicketById(ticket.getId())).withSelfRel());
         return new ResponseEntity<TicketResponse>(ticketResponse, HttpStatus.OK);
     }
@@ -68,8 +68,8 @@ public class TicketsController {
     @ResponseBody
     public PagedResources<Resource<TicketResponse>> getTickets(Pageable pageRequest, PagedResourcesAssembler<TicketResponse> assembler) {
 
-        Page<Ticket> tickets = ticketService.getTickets(pageRequest);
-        Page<TicketResponse> ticketResponses = TicketResponseMapper.mapTicketsPageToTicketsResponsePage(tickets);
+        Page<Ticket> tickets = ticketsService.getTickets(pageRequest);
+        Page<TicketResponse> ticketResponses = TicketsResponseMapper.mapTicketsPageToTicketsResponsePage(tickets);
         PagedResources<Resource<TicketResponse>> result = assembler.toResource(ticketResponses);
         return result;
     }
@@ -77,10 +77,10 @@ public class TicketsController {
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     @ResponseBody
     public HttpEntity<TicketResponse> getTicketById(@PathVariable long id) {
-        Optional<Ticket> optionalTicket = ticketService.getTicket(id);
+        Optional<Ticket> optionalTicket = ticketsService.getTicket(id);
         if(optionalTicket.isPresent()){
             Ticket ticket = optionalTicket.get();
-            TicketResponse ticketResponse = TicketResponseMapper.mapTicketResponse(ticket);
+            TicketResponse ticketResponse = TicketsResponseMapper.mapTicketResponse(ticket);
             ticketResponse.add(linkTo(methodOn(TicketsController.class).getTicketById(ticket.getId())).withSelfRel());
             return new ResponseEntity<TicketResponse>(ticketResponse, HttpStatus.OK);
         }

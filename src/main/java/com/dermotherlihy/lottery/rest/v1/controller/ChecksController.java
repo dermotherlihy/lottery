@@ -2,8 +2,8 @@ package com.dermotherlihy.lottery.rest.v1.controller;
 
 import com.dermotherlihy.lottery.domain.exception.NotFoundException;
 import com.dermotherlihy.lottery.domain.model.Check;
-import com.dermotherlihy.lottery.domain.service.CheckService;
-import com.dermotherlihy.lottery.rest.v1.mapper.CheckResponseMapper;
+import com.dermotherlihy.lottery.domain.service.ChecksService;
+import com.dermotherlihy.lottery.rest.v1.mapper.ChecksResponseMapper;
 import com.dermotherlihy.lottery.rest.v1.resource.request.CheckRequest;
 import com.dermotherlihy.lottery.rest.v1.resource.response.CheckResponse;
 import com.google.common.base.Optional;
@@ -27,14 +27,14 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 public class ChecksController {
 
     @Resource
-    private CheckService checkService;
+    private ChecksService checksService;
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
     public HttpEntity<CheckResponse> checkTicket(@RequestBody CheckRequest checkRequest) {
-        Check check = checkService.createCheck(checkRequest.getTicketId());
-        CheckResponse checkResponse = CheckResponseMapper.mapCheckResponse(check);
+        Check check = checksService.createCheck(checkRequest.getTicketId());
+        CheckResponse checkResponse = ChecksResponseMapper.mapCheckResponse(check);
         checkResponse.add(linkTo(methodOn(ChecksController.class).getCheckById(check.getId())).withSelfRel());
         return new ResponseEntity<CheckResponse>(checkResponse, HttpStatus.CREATED);
     }
@@ -42,10 +42,10 @@ public class ChecksController {
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     @ResponseBody
     public HttpEntity<CheckResponse> getCheckById(@PathVariable long id) {
-        Optional<Check> optionalCheck = checkService.getCheck(id);
+        Optional<Check> optionalCheck = checksService.getCheck(id);
         if(optionalCheck.isPresent()){
             Check check = optionalCheck.get();
-            CheckResponse checkResponse = CheckResponseMapper.mapCheckResponse(check);
+            CheckResponse checkResponse = ChecksResponseMapper.mapCheckResponse(check);
             checkResponse.add(linkTo(methodOn(ChecksController.class).getCheckById(check.getId())).withSelfRel());
             return new ResponseEntity<CheckResponse>(checkResponse, HttpStatus.OK);
 

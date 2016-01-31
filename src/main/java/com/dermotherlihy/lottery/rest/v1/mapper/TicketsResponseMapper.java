@@ -16,7 +16,7 @@ import java.util.List;
  * Created by dermot.herlihy on 29/01/2016.
  */
 
-public class TicketResponseMapper {
+public class TicketsResponseMapper {
 
     public static TicketResponse mapTicketResponse(Ticket ticket){
 
@@ -28,7 +28,7 @@ public class TicketResponseMapper {
 
         for(int i = 0; i < ticket.getLines().size(); i++){
             Line line = ticket.getLines().get(i);
-            LineResponse lineResponse = LineResponseMapper.mapLineResponse(line);
+            LineResponse lineResponse = LinesResponseMapper.mapLineResponse(line);
             lineResponses.add(lineResponse);
         }
         ticketResponse.setLines(lineResponses);

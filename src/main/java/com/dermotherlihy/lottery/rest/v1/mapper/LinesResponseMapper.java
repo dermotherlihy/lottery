@@ -6,7 +6,7 @@ import com.dermotherlihy.lottery.rest.v1.resource.response.LineResponse;
 /**
  * Created by dermot.herlihy on 31/01/2016.
  */
-public class LineResponseMapper {
+public class LinesResponseMapper {
 
     public static LineResponse mapLineResponse(Line line){
         LineResponse lineResponse = new LineResponse(line.getFirstNumber(), line.getSecondNumber(),

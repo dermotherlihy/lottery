@@ -13,7 +13,7 @@ import java.util.List;
  * Created by dermot.herlihy on 31/01/2016.
  */
 
-public class CheckResponseMapper {
+public class ChecksResponseMapper {
 
     public static CheckResponse mapCheckResponse(Check check) {
         List<OutcomeResponse> outcomes = new ArrayList<OutcomeResponse>();
@@ -24,7 +24,7 @@ public class CheckResponseMapper {
     }
 
     private static OutcomeResponse getOutcomeResponse(Outcome outcome) {
-        LineResponse lineResponse = LineResponseMapper.mapLineResponse(outcome.getLine());
+        LineResponse lineResponse = LinesResponseMapper.mapLineResponse(outcome.getLine());
         OutcomeResponse outcomeResponse = new OutcomeResponse(lineResponse,outcome.getResult());
         return outcomeResponse;
     }

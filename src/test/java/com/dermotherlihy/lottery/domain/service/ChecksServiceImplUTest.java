@@ -4,7 +4,7 @@ import com.dermotherlihy.lottery.domain.factory.OutcomeFactory;
 import com.dermotherlihy.lottery.domain.model.*;
 import com.dermotherlihy.lottery.domain.repository.ChecksRepository;
 import com.dermotherlihy.lottery.domain.repository.TicketsRepository;
-import com.dermotherlihy.lottery.domain.service.impl.CheckServiceImpl;
+import com.dermotherlihy.lottery.domain.service.impl.ChecksServiceImpl;
 import com.dermotherlihy.lottery.utils.OutcomeTestData;
 import com.google.common.base.Optional;
 import com.google.common.collect.Lists;
@@ -44,12 +44,12 @@ public class ChecksServiceImplUTest {
     @Mock
     private Outcome outcomeMock;
 
-    private CheckServiceImpl testObj;
+    private ChecksServiceImpl testObj;
 
     @Before
     public void setUp(){
         MockitoAnnotations.initMocks(this);
-        testObj = new CheckServiceImpl();
+        testObj = new ChecksServiceImpl();
         testObj.setChecksRepository(checksRepositoryMock);
         testObj.setTicketsRepository(ticketsRepositoryMock);
         testObj.setOutcomeFactory(outcomeFactoryMock);

@@ -7,7 +7,7 @@ import com.dermotherlihy.lottery.domain.model.Line;
 import com.dermotherlihy.lottery.domain.model.Status;
 import com.dermotherlihy.lottery.domain.model.Ticket;
 import com.dermotherlihy.lottery.domain.repository.TicketsRepository;
-import com.dermotherlihy.lottery.domain.service.impl.TicketServiceImpl;
+import com.dermotherlihy.lottery.domain.service.impl.TicketsServiceImpl;
 import com.google.common.base.Optional;
 import com.google.common.collect.Lists;
 import org.junit.Assert;
@@ -28,7 +28,7 @@ import static org.mockito.Mockito.times;
 /**
  * Created by dermot.herlihy on 30/01/2016.
  */
-public class TicketServiceImplUTest {
+public class TicketsServiceImplUTest {
 
     private static final long TICKET_ID = 1;
     private static final int TWO_LINES = 2;
@@ -55,12 +55,12 @@ public class TicketServiceImplUTest {
     @Mock
     private List<Line> linesMock;
 
-    private TicketServiceImpl testObj;
+    private TicketsServiceImpl testObj;
 
     @Before
     public void setUp(){
         MockitoAnnotations.initMocks(this);
-        testObj = new TicketServiceImpl();
+        testObj = new TicketsServiceImpl();
         testObj.setLineFactory(lineFactoryMock);
         testObj.setTicketsRepository(ticketsRepositoryMock);
     }
