@@ -1,6 +1,7 @@
 package com.dermotherlihy.lottery.domain.service.impl;
 
 import com.dermotherlihy.lottery.domain.exception.NotFoundException;
+import com.dermotherlihy.lottery.domain.factory.OutcomeFactory;
 import com.dermotherlihy.lottery.domain.model.*;
 import com.dermotherlihy.lottery.domain.repository.ChecksRepository;
 import com.dermotherlihy.lottery.domain.repository.TicketsRepository;
@@ -25,6 +26,11 @@ public class CheckServiceImpl implements CheckService{
     @Resource
     private ChecksRepository checksRepository;
 
+    @Resource
+    private OutcomeFactory outcomeFactory;
+
+
+
     @Override
     public Check createCheck(long ticketId) {
         Optional<Ticket> optionalTicket = ticketsRepository.findTicket(ticketId);
@@ -45,7 +51,7 @@ public class CheckServiceImpl implements CheckService{
     private List<Outcome> createOutcomes(Ticket ticket) {
         List<Outcome> outcomeList = new ArrayList<Outcome>();
         for(Line line : ticket.getLines()){
-            Outcome outcome = new Outcome(line);
+            Outcome outcome = outcomeFactory.createOutcome(line);
             outcomeList.add(outcome);
         }
         return outcomeList;
@@ -62,5 +68,9 @@ public class CheckServiceImpl implements CheckService{
 
     public void setChecksRepository(ChecksRepository checksRepository) {
         this.checksRepository = checksRepository;
+    }
+
+    public void setOutcomeFactory(OutcomeFactory outcomeFactory) {
+        this.outcomeFactory = outcomeFactory;
     }
 }

@@ -11,11 +11,11 @@ import java.util.List;
  */
 public class CheckTestData {
 
-    public static Check generateRandomCheck(long ticketId) {
+    public static Check generateCheck(long ticketId) {
         List<Outcome> outcomes = new ArrayList<Outcome>();
-        outcomes.add(new Outcome(LineTestData.getLineWorth0()));
-        outcomes.add(new Outcome(LineTestData.getLineWorth5()));
-        outcomes.add(new Outcome(LineTestData.getLineWorth10()));
+        outcomes.add(OutcomeTestData.generateOutcomeWith0());
+        outcomes.add(OutcomeTestData.generateOutcomeWith10());
+        outcomes.add(OutcomeTestData.generateOutcomeWith5());
         return new Check(ticketId,outcomes);
     }
 }

@@ -22,7 +22,7 @@ public class CheckResponseMapperUTest {
 
     @Test
     public void testMapCheckResponse(){
-        Check check = CheckTestData.generateRandomCheck(TICKET_ID);
+        Check check = CheckTestData.generateCheck(TICKET_ID);
         CheckResponse checkResponse = CheckResponseMapper.mapCheckResponse(check);
         assertThat(checkResponse.getOutcomes().size(), is(check.getOutcomes().size()));
         assertThat(checkResponse.getCheckId(), is(check.getId()));

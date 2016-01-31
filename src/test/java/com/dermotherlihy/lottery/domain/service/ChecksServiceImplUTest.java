@@ -1,10 +1,11 @@
 package com.dermotherlihy.lottery.domain.service;
 
+import com.dermotherlihy.lottery.domain.factory.OutcomeFactory;
 import com.dermotherlihy.lottery.domain.model.*;
 import com.dermotherlihy.lottery.domain.repository.ChecksRepository;
 import com.dermotherlihy.lottery.domain.repository.TicketsRepository;
 import com.dermotherlihy.lottery.domain.service.impl.CheckServiceImpl;
-import com.dermotherlihy.lottery.utils.LineTestData;
+import com.dermotherlihy.lottery.utils.OutcomeTestData;
 import com.google.common.base.Optional;
 import com.google.common.collect.Lists;
 import org.junit.Assert;
@@ -35,7 +36,13 @@ public class ChecksServiceImplUTest {
     private ChecksRepository checksRepositoryMock;
 
     @Mock
+    private OutcomeFactory outcomeFactoryMock;
+
+    @Mock
     private Ticket ticketMock;
+
+    @Mock
+    private Outcome outcomeMock;
 
     private CheckServiceImpl testObj;
 
@@ -45,6 +52,7 @@ public class ChecksServiceImplUTest {
         testObj = new CheckServiceImpl();
         testObj.setChecksRepository(checksRepositoryMock);
         testObj.setTicketsRepository(ticketsRepositoryMock);
+        testObj.setOutcomeFactory(outcomeFactoryMock);
     }
 
     @Test
@@ -53,6 +61,7 @@ public class ChecksServiceImplUTest {
 
         Mockito.when(ticketsRepositoryMock.findTicket(TICKET_ID)).thenReturn(Optional.of(ticketMock));
         Mockito.when(ticketMock.getLines()).thenReturn(Lists.newArrayList(line));
+        Mockito.when(outcomeFactoryMock.createOutcome(line)).thenReturn(outcomeMock);
 
         testObj.createCheck(TICKET_ID);
 
@@ -68,6 +77,7 @@ public class ChecksServiceImplUTest {
 
         Mockito.when(ticketsRepositoryMock.findTicket(TICKET_ID)).thenReturn(Optional.of(ticketMock));
         Mockito.when(ticketMock.getLines()).thenReturn(Lists.newArrayList(line));
+        Mockito.when(outcomeFactoryMock.createOutcome(line)).thenReturn(outcomeMock);
 
         testObj.createCheck(TICKET_ID);
 
@@ -78,14 +88,18 @@ public class ChecksServiceImplUTest {
 
     @Test
     public void testCreateCheckSortsOutcomes(){
-        Line lineWith0 = LineTestData.getLineWorth0();
-        Line lineWith10 = LineTestData.getLineWorth10();
-        Line lineWith5 = LineTestData.getLineWorth5();
-        List<Line> lines = Lists.newArrayList(lineWith0,lineWith10, lineWith5);
+        Outcome outcome0 = OutcomeTestData.generateOutcomeWith0();
+        Outcome outcome10 = OutcomeTestData.generateOutcomeWith10();
+        Outcome outcome5 = OutcomeTestData.generateOutcomeWith10();
+
+        List<Line> lines = Lists.newArrayList(outcome0.getLine(),outcome10.getLine(), outcome5.getLine());
 
         ArgumentCaptor<Check> checkCapture = ArgumentCaptor.forClass(Check.class);
         Mockito.when(ticketsRepositoryMock.findTicket(TICKET_ID)).thenReturn(Optional.of(ticketMock));
         Mockito.when(ticketMock.getLines()).thenReturn(lines);
+        Mockito.when(outcomeFactoryMock.createOutcome(outcome0.getLine())).thenReturn(outcome0);
+        Mockito.when(outcomeFactoryMock.createOutcome(outcome10.getLine())).thenReturn(outcome10);
+        Mockito.when(outcomeFactoryMock.createOutcome(outcome5.getLine())).thenReturn(outcome5);
 
         testObj.createCheck(TICKET_ID);
 
@@ -93,8 +107,8 @@ public class ChecksServiceImplUTest {
         Assert.assertThat(checkCapture.getValue().getTicketId(), is(TICKET_ID));
         List<Outcome> outcomes  = checkCapture.getValue().getOutcomes();
         Iterator<Outcome> iterator = outcomes.iterator();
-        Assert.assertThat(iterator.next().getLine(), is(lineWith10));
-        Assert.assertThat(iterator.next().getLine(), is(lineWith5));
-        Assert.assertThat(iterator.next().getLine(), is(lineWith0));
+        Assert.assertThat(iterator.next().getLine(), is(outcome10.getLine()));
+        Assert.assertThat(iterator.next().getLine(), is(outcome5.getLine()));
+        Assert.assertThat(iterator.next().getLine(), is(outcome0.getLine()));
     }
 }

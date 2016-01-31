@@ -1,7 +1,5 @@
 package com.dermotherlihy.lottery.domain.model;
 
-import org.springframework.util.Assert;
-
 import javax.persistence.*;
 
 /**
@@ -19,40 +17,22 @@ public class Outcome implements Comparable<Outcome>{
 
     private Integer result;
 
-    protected Outcome(){
+    public Outcome(){
     }
 
-    protected void setId(long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    protected void setLine(Line line) {
+    public void setLine(Line line) {
         this.line = line;
     }
 
-    protected void setResult(Integer result) {
+    public void setResult(Integer result) {
         this.result = result;
     }
 
-    public Outcome(Line line) {
-        Assert.notNull(line, "Line should never be null");
-        this.line = line;
-        generateResult();
-    }
 
-    private void generateResult(){
-        if(line.getFirstNumber() + line.getSecondNumber() + line.getThirdNumber() == 2){
-            result = 10;
-        }
-        else if((line.getFirstNumber() == line.getSecondNumber()) && (line.getSecondNumber() == line.getThirdNumber())){
-            result = 5;
-        }
-        else if(line.getFirstNumber() != line.getSecondNumber() && line.getFirstNumber() != line.getThirdNumber()){
-            result = 1;
-        }else{
-            result = 0;
-        }
-    }
 
     public long getId() {
         return id;
@@ -86,6 +66,8 @@ public class Outcome implements Comparable<Outcome>{
         result1 = 31 * result1 + (result != null ? result.hashCode() : 0);
         return result1;
     }
+
+
 
     @Override
     public int compareTo(Outcome otherOutcome) {
