@@ -1,4 +1,4 @@
-package com.dermotherlihy.lottery.rest.v1;
+package com.dermotherlihy.lottery.rest.v1.controller;
 
 import com.dermotherlihy.lottery.domain.exception.NotFoundException;
 import com.dermotherlihy.lottery.domain.model.Check;

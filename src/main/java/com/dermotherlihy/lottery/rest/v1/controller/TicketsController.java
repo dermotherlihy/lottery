@@ -1,4 +1,4 @@
-package com.dermotherlihy.lottery.rest.v1;
+package com.dermotherlihy.lottery.rest.v1.controller;
 
 import com.dermotherlihy.lottery.domain.exception.MaxLinesExceededException;
 import com.dermotherlihy.lottery.domain.exception.NotFoundException;
