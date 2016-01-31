@@ -5,14 +5,14 @@ package com.dermotherlihy.lottery.rest.v1.resource.request;
  */
 public class CheckRequest {
 
-    private int ticketId;
+    private long ticketId;
 
 
-    public int getTicketId() {
+    public long getTicketId() {
         return ticketId;
     }
 
-    public void setTicketId(int ticketId) {
+    public void setTicketId(long ticketId) {
         this.ticketId = ticketId;
     }
 }

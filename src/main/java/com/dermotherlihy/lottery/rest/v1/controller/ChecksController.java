@@ -23,8 +23,10 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
  * Created by dermot.herlihy on 29/01/2016.
  */
 @RestController
-@RequestMapping("/v1/checks")
+@RequestMapping(value = {ChecksController.PATH})
 public class ChecksController {
+
+    public static final String PATH = "/v1/checks";
 
     @Resource
     private ChecksService checksService;
@@ -32,7 +34,7 @@ public class ChecksController {
     @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
-    public HttpEntity<CheckResponse> checkTicket(@RequestBody CheckRequest checkRequest) {
+    public HttpEntity<CheckResponse> checkCheck(@RequestBody CheckRequest checkRequest) {
         Check check = checksService.createCheck(checkRequest.getTicketId());
         CheckResponse checkResponse = ChecksResponseMapper.mapCheckResponse(check);
         checkResponse.add(linkTo(methodOn(ChecksController.class).getCheckById(check.getId())).withSelfRel());

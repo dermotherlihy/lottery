@@ -34,11 +34,11 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
  *
  */
 @RestController
-@RequestMapping(value = "/v1/tickets", consumes = MediaType.APPLICATION_JSON_VALUE,
+@RequestMapping(value = {TicketsController.PATH}, consumes = MediaType.APPLICATION_JSON_VALUE,
                     produces = MediaType.APPLICATION_JSON_VALUE)
 public class TicketsController {
 
-    public static final String URL = "/v1/tickets";
+    public static final String PATH = "/v1/tickets";
 
     @Autowired
     private TicketsService ticketsService;

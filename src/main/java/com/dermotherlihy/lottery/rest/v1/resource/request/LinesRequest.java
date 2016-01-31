@@ -14,4 +14,5 @@ public class LinesRequest {
     public void setNumberOfLines(Integer numberOfLines) {
         this.numberOfLines = numberOfLines;
     }
+
 }
