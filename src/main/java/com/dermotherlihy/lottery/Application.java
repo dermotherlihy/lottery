@@ -14,9 +14,10 @@ import org.springframework.data.web.config.EnableSpringDataWebSupport;
 @ComponentScan(basePackages = "com.dermotherlihy.lottery")
 @EnableAutoConfiguration
 @EnableSpringDataWebSupport
-public class Application {
+public class Application  {
 
     public static void main(String[] args) throws Exception {
         SpringApplication.run(Application.class, args);
     }
+
 }

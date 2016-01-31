@@ -7,6 +7,10 @@ public class TicketRequest {
 
     private Integer numberOfLines;
 
+    public TicketRequest(){
+
+    }
+
     public TicketRequest(Integer numberOfLines) {
         this.numberOfLines = numberOfLines;
     }
