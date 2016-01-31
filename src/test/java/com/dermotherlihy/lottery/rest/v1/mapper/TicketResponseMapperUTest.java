@@ -1,4 +1,4 @@
-package com.dermotherlihy.lottery.rest.v1.response.mapper;
+package com.dermotherlihy.lottery.rest.v1.mapper;
 
 import com.dermotherlihy.lottery.utils.TicketTestData;
 import com.dermotherlihy.lottery.domain.model.Line;

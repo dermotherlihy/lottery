@@ -1,4 +1,4 @@
-package com.dermotherlihy.lottery.rest.v1.response.mapper;
+package com.dermotherlihy.lottery.rest.v1.mapper;
 
 import com.dermotherlihy.lottery.domain.model.Check;
 import com.dermotherlihy.lottery.domain.model.Outcome;

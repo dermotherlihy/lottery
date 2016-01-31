@@ -1,0 +1,121 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://jsonschema.net",
+  "type": "object",
+  "properties": {
+    "_links": {
+      "id": "http://jsonschema.net/_links",
+      "type": "object",
+      "properties": {
+        "self": {
+          "id": "http://jsonschema.net/_links/self",
+          "type": "object",
+          "properties": {
+            "href": {
+              "id": "http://jsonschema.net/_links/self/href",
+              "type": "string"
+            }
+          },
+          "required": [
+            "href"
+          ]
+        }
+      },
+      "required": [
+        "self"
+      ]
+    },
+    "ticketId": {
+      "id": "http://jsonschema.net/ticketId",
+      "type": "integer"
+    },
+    "lines": {
+      "id": "http://jsonschema.net/lines",
+      "type": "array",
+      "items": [
+        {
+          "id": "http://jsonschema.net/lines/0",
+          "type": "object",
+          "properties": {
+            "firstNumber": {
+              "id": "http://jsonschema.net/lines/0/firstNumber",
+              "type": "integer"
+            },
+            "secondNumber": {
+              "id": "http://jsonschema.net/lines/0/secondNumber",
+              "type": "integer"
+            },
+            "thirdNumber": {
+              "id": "http://jsonschema.net/lines/0/thirdNumber",
+              "type": "integer"
+            }
+          }
+        },
+        {
+          "id": "http://jsonschema.net/lines/1",
+          "type": "object",
+          "properties": {
+            "firstNumber": {
+              "id": "http://jsonschema.net/lines/1/firstNumber",
+              "type": "integer"
+            },
+            "secondNumber": {
+              "id": "http://jsonschema.net/lines/1/secondNumber",
+              "type": "integer"
+            },
+            "thirdNumber": {
+              "id": "http://jsonschema.net/lines/1/thirdNumber",
+              "type": "integer"
+            }
+          }
+        },
+        {
+          "id": "http://jsonschema.net/lines/2",
+          "type": "object",
+          "properties": {
+            "firstNumber": {
+              "id": "http://jsonschema.net/lines/2/firstNumber",
+              "type": "integer"
+            },
+            "secondNumber": {
+              "id": "http://jsonschema.net/lines/2/secondNumber",
+              "type": "integer"
+            },
+            "thirdNumber": {
+              "id": "http://jsonschema.net/lines/2/thirdNumber",
+              "type": "integer"
+            }
+          }
+        },
+        {
+          "id": "http://jsonschema.net/lines/3",
+          "type": "object",
+          "properties": {
+            "firstNumber": {
+              "id": "http://jsonschema.net/lines/3/firstNumber",
+              "type": "integer"
+            },
+            "secondNumber": {
+              "id": "http://jsonschema.net/lines/3/secondNumber",
+              "type": "integer"
+            },
+            "thirdNumber": {
+              "id": "http://jsonschema.net/lines/3/thirdNumber",
+              "type": "integer"
+            }
+          }
+        }
+      ]
+    },
+    "status": {
+      "id": "http://jsonschema.net/status",
+      "type": "string"
+    }
+  },
+  "required": [
+    "_links",
+    "ticketId",
+    "lines",
+    "status"
+  ]
+}
