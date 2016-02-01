@@ -11,7 +11,7 @@ mvn clean install -Pintegration //builds jar, runs unit and integration tests
 
 then
 
-java -jar target/lottery-0.0.1-SNAPSHOT.jar
+java -jar target/lottery-service-0.0.1-SNAPSHOT.jar
 
 A postman collection is available at
 
