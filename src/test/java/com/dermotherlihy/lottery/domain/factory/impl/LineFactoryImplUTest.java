@@ -1,4 +1,4 @@
-package com.dermotherlihy.lottery.domain.factory;
+package com.dermotherlihy.lottery.domain.factory.impl;
 
 import com.dermotherlihy.lottery.domain.model.Line;
 import com.dermotherlihy.lottery.domain.model.Ticket;
@@ -19,7 +19,7 @@ import static org.mockito.Mockito.times;
 /**
  * Created by dermot.herlihy on 30/01/2016.
  */
-public class LineFactoryUTest {
+public class LineFactoryImplUTest {
 
     @Mock
     private Random randomMock;
@@ -28,12 +28,12 @@ public class LineFactoryUTest {
     private Ticket ticketMock;
 
 
-    private LineFactory testObj;
+    private LineFactoryImpl testObj;
 
     @Before
     public void setUp(){
         MockitoAnnotations.initMocks(this);
-        testObj = new LineFactory();
+        testObj = new LineFactoryImpl();
         testObj.setRandom(randomMock);
     }
 

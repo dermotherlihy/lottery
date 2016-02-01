@@ -1,6 +1,6 @@
 package com.dermotherlihy.lottery.domain.service;
 
-import com.dermotherlihy.lottery.domain.factory.OutcomeFactory;
+import com.dermotherlihy.lottery.domain.factory.impl.OutcomeFactoryImpl;
 import com.dermotherlihy.lottery.domain.model.*;
 import com.dermotherlihy.lottery.domain.repository.ChecksRepository;
 import com.dermotherlihy.lottery.domain.repository.TicketsRepository;
@@ -37,7 +37,7 @@ public class ChecksServiceImplUTest {
     private ChecksRepository checksRepositoryMock;
 
     @Mock
-    private OutcomeFactory outcomeFactoryMock;
+    private OutcomeFactoryImpl outcomeFactoryMock;
 
     @Mock
     private Ticket ticketMock;

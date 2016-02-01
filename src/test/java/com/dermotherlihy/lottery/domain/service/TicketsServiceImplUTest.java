@@ -2,7 +2,7 @@ package com.dermotherlihy.lottery.domain.service;
 
 import com.dermotherlihy.lottery.domain.exception.MaxLinesExceededException;
 import com.dermotherlihy.lottery.domain.exception.TicketExpiredException;
-import com.dermotherlihy.lottery.domain.factory.LineFactory;
+import com.dermotherlihy.lottery.domain.factory.impl.LineFactoryImpl;
 import com.dermotherlihy.lottery.domain.model.Line;
 import com.dermotherlihy.lottery.domain.model.Status;
 import com.dermotherlihy.lottery.domain.model.Ticket;
@@ -38,7 +38,7 @@ public class TicketsServiceImplUTest {
     private TicketsRepository ticketsRepositoryMock;
 
     @Mock
-    private LineFactory lineFactoryMock;
+    private LineFactoryImpl lineFactoryMock;
 
     @Mock
     private Ticket ticketMock;

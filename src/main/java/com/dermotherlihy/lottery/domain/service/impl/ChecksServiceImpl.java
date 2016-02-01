@@ -2,6 +2,7 @@ package com.dermotherlihy.lottery.domain.service.impl;
 
 import com.dermotherlihy.lottery.domain.exception.NotFoundException;
 import com.dermotherlihy.lottery.domain.factory.OutcomeFactory;
+import com.dermotherlihy.lottery.domain.factory.impl.OutcomeFactoryImpl;
 import com.dermotherlihy.lottery.domain.model.*;
 import com.dermotherlihy.lottery.domain.repository.ChecksRepository;
 import com.dermotherlihy.lottery.domain.repository.TicketsRepository;
@@ -77,7 +78,7 @@ public class ChecksServiceImpl implements ChecksService {
         this.checksRepository = checksRepository;
     }
 
-    public void setOutcomeFactory(OutcomeFactory outcomeFactory) {
+    public void setOutcomeFactory(OutcomeFactoryImpl outcomeFactory) {
         this.outcomeFactory = outcomeFactory;
     }
 }

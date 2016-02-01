@@ -1,4 +1,4 @@
-package com.dermotherlihy.lottery.domain.factory;
+package com.dermotherlihy.lottery.domain.factory.impl;
 
 import com.dermotherlihy.lottery.domain.model.Line;
 import com.dermotherlihy.lottery.domain.model.Outcome;
@@ -11,9 +11,9 @@ import static org.hamcrest.core.Is.is;
 /**
  * ToDo : Maybe rename some of tests
  */
-public class OutcomeFactoryUTest {
+public class OutcomeFactoryImplUTest {
 
-    private OutcomeFactory testObj = new OutcomeFactory();
+    private OutcomeFactoryImpl testObj = new OutcomeFactoryImpl();
 
     @Test
     public void testResultIs5WhenNumbersAreTheSameAndZeros(){
