@@ -1,6 +1,9 @@
 package com.dermotherlihy.lottery.domain.model;
 
+import com.google.common.base.Objects;
+
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,6 +20,10 @@ public class Ticket {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Line> lines;
 
+    private Date created;
+
+    private Date modified;
+
     private Status status;
 
     public Ticket(){
@@ -26,6 +33,7 @@ public class Ticket {
     public Ticket(List<Line> lines, Status status) {
         this.lines = lines;
         this.status = status;
+        this.created = new Date();
     }
 
     public long getId() {
@@ -52,24 +60,36 @@ public class Ticket {
         this.status = status;
     }
 
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public Date getModified() {
+        return modified;
+    }
+
+    public void setModified(Date modified) {
+        this.modified = modified;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Ticket ticket = (Ticket) o;
-
-        if (id != ticket.id) return false;
-        if (lines != null ? !lines.equals(ticket.lines) : ticket.lines != null) return false;
-        return status == ticket.status;
-
+        return Objects.equal(id, ticket.id) &&
+                Objects.equal(lines, ticket.lines) &&
+                Objects.equal(created, ticket.created) &&
+                Objects.equal(modified, ticket.modified) &&
+                Objects.equal(status, ticket.status);
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (lines != null ? lines.hashCode() : 0);
-        result = 31 * result + (status != null ? status.hashCode() : 0);
-        return result;
+        return Objects.hashCode(id, lines, created, modified, status);
     }
 }

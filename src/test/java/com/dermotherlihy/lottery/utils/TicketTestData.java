@@ -15,15 +15,23 @@ public class TicketTestData {
 
     private static Random random = new Random();
 
-    public static Ticket generateRandomNewTicketWithId(){
+    public static Ticket generateRandomTicketWithId(){
+        Ticket ticket = getRandomTicket();
+        ticket.setId(random.nextLong());
+        return ticket;
+    }
+    public static Ticket generateRandomTicketForPersistence(){
+        Ticket ticket = getRandomTicket();
+        return ticket;
+    }
+
+    private static Ticket getRandomTicket() {
         List<Line> lines = new ArrayList();
 
         for(int i = 0; i < random.nextInt(10); i++){
             lines.add(getRandomLine());
         }
-        Ticket ticket = new Ticket(lines, Status.NEW);
-        ticket.setId(random.nextLong());
-        return ticket;
+        return new Ticket(lines, Status.NEW);
     }
 
     private static Line getRandomLine(){

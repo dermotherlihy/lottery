@@ -7,6 +7,12 @@ public class CheckRequest {
 
     private long ticketId;
 
+    public CheckRequest(long ticketId) {
+        this.ticketId = ticketId;
+    }
+    public CheckRequest() {
+
+    }
 
     public long getTicketId() {
         return ticketId;

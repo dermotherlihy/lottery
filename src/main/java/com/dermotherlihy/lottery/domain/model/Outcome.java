@@ -1,5 +1,7 @@
 package com.dermotherlihy.lottery.domain.model;
 
+import com.google.common.base.Objects;
+
 import javax.persistence.*;
 
 /**
@@ -50,24 +52,16 @@ public class Outcome implements Comparable<Outcome>{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Outcome outcome = (Outcome) o;
-
-        if (id != outcome.id) return false;
-        if (line != null ? !line.equals(outcome.line) : outcome.line != null) return false;
-        return !(result != null ? !result.equals(outcome.result) : outcome.result != null);
-
+        return Objects.equal(id, outcome.id) &&
+                Objects.equal(line, outcome.line) &&
+                Objects.equal(result, outcome.result);
     }
 
     @Override
     public int hashCode() {
-        int result1 = (int) (id ^ (id >>> 32));
-        result1 = 31 * result1 + (line != null ? line.hashCode() : 0);
-        result1 = 31 * result1 + (result != null ? result.hashCode() : 0);
-        return result1;
+        return Objects.hashCode(id, line, result);
     }
-
-
 
     @Override
     public int compareTo(Outcome otherOutcome) {

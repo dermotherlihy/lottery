@@ -1,6 +1,9 @@
 package com.dermotherlihy.lottery.domain.model;
 
+import com.google.common.base.Objects;
+
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -14,6 +17,8 @@ public class Check {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
     private long ticketId;
+    private Date created;
+
     @OneToMany(targetEntity=Outcome.class,
             fetch= FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Outcome> outcomes;
@@ -25,6 +30,7 @@ public class Check {
     public Check(long ticketId, List<Outcome> outcomes) {
         this.ticketId = ticketId;
         this.outcomes = outcomes;
+        this.created = new Date();
     }
 
     public long getId() {
@@ -39,24 +45,27 @@ public class Check {
         return outcomes;
     }
 
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Check check = (Check) o;
-
-        if (id != check.id) return false;
-        if (ticketId != check.ticketId) return false;
-        return !(outcomes != null ? !outcomes.equals(check.outcomes) : check.outcomes != null);
-
+        return Objects.equal(id, check.id) &&
+                Objects.equal(ticketId, check.ticketId) &&
+                Objects.equal(created, check.created) &&
+                Objects.equal(outcomes, check.outcomes);
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (int) (ticketId ^ (ticketId >>> 32));
-        result = 31 * result + (outcomes != null ? outcomes.hashCode() : 0);
-        return result;
+        return Objects.hashCode(id, ticketId, created, outcomes);
     }
 }

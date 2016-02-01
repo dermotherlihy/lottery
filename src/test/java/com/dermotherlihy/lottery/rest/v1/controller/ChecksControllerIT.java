@@ -4,11 +4,13 @@ import com.dermotherlihy.lottery.rest.v1.BaseTestController;
 import com.dermotherlihy.lottery.rest.v1.resource.request.CheckRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.jayway.restassured.RestAssured;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.HttpStatus;
 
 import static com.jayway.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.core.IsNull.notNullValue;
 
@@ -31,9 +33,9 @@ public class ChecksControllerIT extends BaseTestController {
         defaultGiven()
                 .body(checkRequest)
                 .when()
-                .post(ChecksController.PATH)
+                .put(ChecksController.PATH)
                 .then()
-                .statusCode(HttpStatus.CREATED.value())
+                .statusCode(HttpStatus.OK.value())
                 .body(matchesJsonSchemaInClasspath("checks/create-check-response.json"))
                 .body("checkId", notNullValue())
                 .body("ticketId", equalTo(ticketId.intValue()))
@@ -44,7 +46,19 @@ public class ChecksControllerIT extends BaseTestController {
     }
 
     @Test
-    public void testGetCheckSucceeds() throws JsonProcessingException {
+    public void testCreateCheckIsIdempotent() throws JsonProcessingException {
+        long ticketId = createTicketAndReturnId();
+        CheckRequest checkRequest = getCheckRequest(ticketId);
+
+        Long firstCheckId = extractId(extractSelfLinkFromResponse(createCheck(checkRequest)));
+        Long secondCheckId = extractId(extractSelfLinkFromResponse(createCheck(checkRequest)));
+
+        Assert.assertThat(firstCheckId, is(secondCheckId));
+
+    }
+
+    @Test
+    public void testGetCheckByIdSucceeds() throws JsonProcessingException {
         Long ticketId = createTicketAndReturnId();
         CheckRequest checkRequest = getCheckRequest(ticketId);
         String checkUrl = createCheck(checkRequest).extract().path("_links.self.href");;
@@ -60,7 +74,7 @@ public class ChecksControllerIT extends BaseTestController {
                 .body("outcomes[0].result", notNullValue());
     }
     @Test
-    public void testGetCheckFailsWhenCalledWithNonExistentId() throws JsonProcessingException {
+    public void testGetCheckByIdFailsWhenCalledWithNonExistentId() throws JsonProcessingException {
         defaultGiven()
                 .when()
                 .get(ChecksController.PATH+"/"+NON_EXISTENT_ID)

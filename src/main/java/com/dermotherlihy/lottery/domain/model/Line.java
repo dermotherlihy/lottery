@@ -1,5 +1,7 @@
 package com.dermotherlihy.lottery.domain.model;
 
+import com.google.common.base.Objects;
+
 import javax.persistence.*;
 
 /**
@@ -45,23 +47,16 @@ public class Line {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Line line = (Line) o;
-
-        if (id != line.id) return false;
-        if (firstNumber != null ? !firstNumber.equals(line.firstNumber) : line.firstNumber != null) return false;
-        if (secondNumber != null ? !secondNumber.equals(line.secondNumber) : line.secondNumber != null) return false;
-        return !(thirdNumber != null ? !thirdNumber.equals(line.thirdNumber) : line.thirdNumber != null);
-
+        return Objects.equal(id, line.id) &&
+                Objects.equal(firstNumber, line.firstNumber) &&
+                Objects.equal(secondNumber, line.secondNumber) &&
+                Objects.equal(thirdNumber, line.thirdNumber);
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (firstNumber != null ? firstNumber.hashCode() : 0);
-        result = 31 * result + (secondNumber != null ? secondNumber.hashCode() : 0);
-        result = 31 * result + (thirdNumber != null ? thirdNumber.hashCode() : 0);
-        return result;
+        return Objects.hashCode(id, firstNumber, secondNumber, thirdNumber);
     }
 }
 

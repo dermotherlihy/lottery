@@ -12,7 +12,6 @@ import org.springframework.http.HttpStatus;
 import static com.jayway.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.core.IsNull.notNullValue;
-import static org.hamcrest.core.IsNull.nullValue;
 
 /**
  * Created by dermot.herlihy on 30/01/2016.
@@ -48,7 +47,7 @@ public class TicketsControllerIT extends BaseTestController {
     }
 
     @Test
-    public void testCreateTicketFailsDueToToManyLinesRequested() throws JsonProcessingException {
+    public void testCreateTicketFailsWhenTooManyLinesRequested() throws JsonProcessingException {
 
         TicketRequest ticketRequest = new TicketRequest(30);
         defaultGiven()
@@ -64,7 +63,7 @@ public class TicketsControllerIT extends BaseTestController {
 
     @Test
     public void testGetTicketByIdSucceeds() throws JsonProcessingException {
-        String url = extractURLFromTicket(createTicket());
+        String url = extractSelfLinkFromResponse(createTicket());
         defaultGiven()
                 .when().get(url)
                 .then().body(matchesJsonSchemaInClasspath("tickets/create-ticket.json"))
@@ -87,36 +86,33 @@ public class TicketsControllerIT extends BaseTestController {
     }
 
     @Test
-    public void testGetTicketSucceedsLessThat20TicketsInSearch() throws JsonProcessingException {
+    public void testGetTickets() throws JsonProcessingException {
         createTicket();
         defaultGiven()
                 .when().get(TicketsController.PATH)
-                .then().body(matchesJsonSchemaInClasspath("tickets/get-tickets-less-than-20-schema.json"))
-                .body("_links.self", notNullValue())
-                .body("_links.first", nullValue())
-                .body("_links.next", nullValue())
-                .body("_links.last", nullValue());;
+                .then()
+                .body(matchesJsonSchemaInClasspath("tickets/get-tickets-schema.json"))
+                .body("_links.self", notNullValue());
 
 
     }
     @Test
-    public void testGetTicketSucceedsMoreThan20TicketsInSearch() throws JsonProcessingException {
+    public void testGetTicketWhenMoreThan20TicketsInDB() throws JsonProcessingException {
         createTickets(TWENTY_ONE);
         defaultGiven()
                 .when().get(TicketsController.PATH)
                 .then()
-                .body(matchesJsonSchemaInClasspath("tickets/get-tickets-more-than-20-schema.json"))
+                .body(matchesJsonSchemaInClasspath("tickets/get-tickets-schema.json"))
                 .body("_links.self", notNullValue())
                 .body("_links.first", notNullValue())
                 .body("_links.next", notNullValue())
                 .body("_links.last", notNullValue());
 
-
     }
 
     @Test
-    public void testAddLinesToTicketSucceeds() throws JsonProcessingException {
-        String url = extractURLFromTicket(createTicket())+"/lines";
+    public void testAddTicketLinesSucceeds() throws JsonProcessingException {
+        String url = extractSelfLinkFromResponse(createTicket())+"/lines";
         LinesRequest linesRequest = new LinesRequest();
         linesRequest.setNumberOfLines(NUMBER_OF_LINES);
         defaultGiven().body(linesRequest)
@@ -132,8 +128,8 @@ public class TicketsControllerIT extends BaseTestController {
 
 
     @Test
-    public void testAddLinesToTicketFailsIfTryingToAddTooManyLines() throws JsonProcessingException {
-        String url = extractURLFromTicket(createTicket())+"/lines";
+    public void testAddTicketLinesFailsWhenTooManyLinesRequested() throws JsonProcessingException {
+        String url = extractSelfLinkFromResponse(createTicket())+"/lines";
         LinesRequest linesRequest = new LinesRequest();
         linesRequest.setNumberOfLines(TOO_MANY_LINES);
         defaultGiven().body(linesRequest)
@@ -145,7 +141,7 @@ public class TicketsControllerIT extends BaseTestController {
 
     }
     @Test
-    public void testAddLinesToTicketFailsWhenTicketChecked() throws JsonProcessingException {
+    public void testAddTicketLinesFailsWhenTicketChecked() throws JsonProcessingException {
         String ticketUrl = createCheckedTicket();
         String url = ticketUrl+"/lines";
         LinesRequest linesRequest = new LinesRequest();

@@ -31,14 +31,13 @@ public class ChecksController {
     @Resource
     private ChecksService checksService;
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.PUT)
     @ResponseBody
-    @ResponseStatus(HttpStatus.CREATED)
     public HttpEntity<CheckResponse> checkCheck(@RequestBody CheckRequest checkRequest) {
         Check check = checksService.createCheck(checkRequest.getTicketId());
         CheckResponse checkResponse = ChecksResponseMapper.mapCheckResponse(check);
         checkResponse.add(linkTo(methodOn(ChecksController.class).getCheckById(check.getId())).withSelfRel());
-        return new ResponseEntity<CheckResponse>(checkResponse, HttpStatus.CREATED);
+        return new ResponseEntity<CheckResponse>(checkResponse, HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")

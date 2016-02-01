@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -66,6 +67,7 @@ public class TicketsServiceImpl implements TicketsService {
                 }else{
                     List<Line> lines = lineFactory.addLines(ticket.getLines(), numberOfLines);
                     ticket.setLines(lines);
+                    ticket.setModified(new Date());
                     ticket= ticketsRepository.updateTicket(ticket);
                 }
             }else{

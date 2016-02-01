@@ -33,9 +33,8 @@ public class BaseTestController {
     protected int serverPort;
 
     protected String createCheckedTicket() {
-        String url = extractURLFromTicket(createTicket());
-        CheckRequest checkRequest = new CheckRequest();
-        checkRequest.setTicketId(extractId(url));
+        String url = extractSelfLinkFromResponse(createTicket());
+        CheckRequest checkRequest = getCheckRequest(extractId(url));
         createCheck(checkRequest);
         return url;
     }
@@ -43,9 +42,9 @@ public class BaseTestController {
     protected ValidatableResponse createCheck(CheckRequest checkRequest) {
         return defaultGiven().body(checkRequest)
                 .when()
-                .post(ChecksController.PATH)
+                .put(ChecksController.PATH)
                 .then()
-                .statusCode(HttpStatus.CREATED.value());
+                .statusCode(HttpStatus.OK.value());
     }
 
 
@@ -62,7 +61,7 @@ public class BaseTestController {
 
     protected long createTicketAndReturnId(){
         TicketRequest ticketRequest = new TicketRequest(NUMBER_OF_LINES);
-        String ticketURL = extractURLFromTicket(createTicket(ticketRequest));
+        String ticketURL = extractSelfLinkFromResponse(createTicket(ticketRequest));
         return extractId(ticketURL);
     }
 
@@ -80,13 +79,12 @@ public class BaseTestController {
     }
 
     protected CheckRequest getCheckRequest(Long ticketId) {
-        CheckRequest checkRequest = new CheckRequest();
-        checkRequest.setTicketId(ticketId);
+        CheckRequest checkRequest = new CheckRequest(ticketId);
         return checkRequest;
     }
 
-    protected String extractURLFromTicket(ValidatableResponse ticket) {
-        return ticket.extract().path("_links.self.href");
+    protected String extractSelfLinkFromResponse(ValidatableResponse response) {
+        return response.extract().path("_links.self.href");
     }
 
 

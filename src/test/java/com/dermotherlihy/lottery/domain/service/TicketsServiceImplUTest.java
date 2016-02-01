@@ -18,6 +18,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
+import java.util.Date;
 import java.util.List;
 
 import static org.hamcrest.collection.IsIterableContainingInAnyOrder.containsInAnyOrder;
@@ -118,6 +119,7 @@ public class TicketsServiceImplUTest {
 
         Mockito.verify(lineFactoryMock, times(1)).addLines(linesMock,TWO_LINES);
         Mockito.verify(ticketMock).setLines(linesMock);
+        Mockito.verify(ticketMock).setModified(Mockito.any(Date.class));
         Mockito.verify(ticketsRepositoryMock).updateTicket(argument.capture());
         Assert.assertThat(argument.getValue().getStatus(), is(Status.NEW));
     }

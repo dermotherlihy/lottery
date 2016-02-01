@@ -22,7 +22,7 @@ public class TicketsResponseMapperUTest {
 
     @Test
     public void testTicketResponseCreation(){
-        Ticket ticket = TicketTestData.generateRandomNewTicketWithId();
+        Ticket ticket = TicketTestData.generateRandomTicketWithId();
         TicketResponse response = testObj.mapTicketResponse(ticket);
         Assert.assertThat(response.getTicketId(), is(ticket.getId()));
         Assert.assertThat(response.getStatus(), is(NEW));
