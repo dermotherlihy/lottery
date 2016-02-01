@@ -6,7 +6,7 @@ mvn clean install //build jar and runs unit tests
 
 or
 
-mvn clean install -Pintegration //builds jar and runs unit and integration tests
+mvn clean install -Pintegration //builds jar, runs unit and integration tests
 
 
 then
