@@ -37,9 +37,9 @@ public class TicketsResponseMapperUTest {
     }
 
     private void assertLine(LineResponse responseLine, Line ticketLine) {
-        Assert.assertThat(responseLine.getFirstNumber(), is(ticketLine.getFirstNumber()));
-        Assert.assertThat(responseLine.getSecondNumber(), is(ticketLine.getSecondNumber()));
-        Assert.assertThat(responseLine.getThirdNumber(), is(ticketLine.getThirdNumber()));
+        Assert.assertThat(responseLine.getNumbers().get(0), is(ticketLine.getFirstNumber()));
+        Assert.assertThat(responseLine.getNumbers().get(1), is(ticketLine.getSecondNumber()));
+        Assert.assertThat(responseLine.getNumbers().get(2), is(ticketLine.getThirdNumber()));
     }
 
 }

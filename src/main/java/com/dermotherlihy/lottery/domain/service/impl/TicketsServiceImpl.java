@@ -15,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -31,6 +32,7 @@ public class TicketsServiceImpl implements TicketsService {
 
 
     @Override
+    @Transactional
     public Ticket createTicket(int numberOfLines) {
        if(numberOfLines > MAX_LINES){
            throw new MaxLinesExceededException("Max Lines Allowed is 27");

@@ -3,6 +3,28 @@
   "id": "http://jsonschema.net",
   "type": "object",
   "properties": {
+    "_links": {
+      "id": "http://jsonschema.net/_links",
+      "type": "object",
+      "properties": {
+        "self": {
+          "id": "http://jsonschema.net/_links/self",
+          "type": "object",
+          "properties": {
+            "href": {
+              "id": "http://jsonschema.net/_links/self/href",
+              "type": "string"
+            }
+          },
+          "required": [
+            "href"
+          ]
+        }
+      },
+      "required": [
+        "self"
+      ]
+    },
     "checkId": {
       "id": "http://jsonschema.net/checkId",
       "type": "integer"
@@ -19,21 +41,27 @@
           "id": "http://jsonschema.net/outcomes/0",
           "type": "object",
           "properties": {
-            "lineResponse": {
-              "id": "http://jsonschema.net/outcomes/0/lineResponse",
+            "line": {
+              "id": "http://jsonschema.net/outcomes/0/line",
               "type": "object",
               "properties": {
-                "firstNumber": {
-                  "id": "http://jsonschema.net/outcomes/0/lineResponse/firstNumber",
-                  "type": "integer"
-                },
-                "secondNumber": {
-                  "id": "http://jsonschema.net/outcomes/0/lineResponse/secondNumber",
-                  "type": "integer"
-                },
-                "thirdNumber": {
-                  "id": "http://jsonschema.net/outcomes/0/lineResponse/thirdNumber",
-                  "type": "integer"
+                "numbers": {
+                  "id": "http://jsonschema.net/outcomes/0/line/numbers",
+                  "type": "array",
+                  "items": [
+                    {
+                      "id": "http://jsonschema.net/outcomes/0/line/numbers/0",
+                      "type": "integer"
+                    },
+                    {
+                      "id": "http://jsonschema.net/outcomes/0/line/numbers/1",
+                      "type": "integer"
+                    },
+                    {
+                      "id": "http://jsonschema.net/outcomes/0/line/numbers/2",
+                      "type": "integer"
+                    }
+                  ]
                 }
               }
             },
@@ -47,21 +75,27 @@
           "id": "http://jsonschema.net/outcomes/1",
           "type": "object",
           "properties": {
-            "lineResponse": {
-              "id": "http://jsonschema.net/outcomes/1/lineResponse",
+            "line": {
+              "id": "http://jsonschema.net/outcomes/1/line",
               "type": "object",
               "properties": {
-                "firstNumber": {
-                  "id": "http://jsonschema.net/outcomes/1/lineResponse/firstNumber",
-                  "type": "integer"
-                },
-                "secondNumber": {
-                  "id": "http://jsonschema.net/outcomes/1/lineResponse/secondNumber",
-                  "type": "integer"
-                },
-                "thirdNumber": {
-                  "id": "http://jsonschema.net/outcomes/1/lineResponse/thirdNumber",
-                  "type": "integer"
+                "numbers": {
+                  "id": "http://jsonschema.net/outcomes/1/line/numbers",
+                  "type": "array",
+                  "items": [
+                    {
+                      "id": "http://jsonschema.net/outcomes/1/line/numbers/0",
+                      "type": "integer"
+                    },
+                    {
+                      "id": "http://jsonschema.net/outcomes/1/line/numbers/1",
+                      "type": "integer"
+                    },
+                    {
+                      "id": "http://jsonschema.net/outcomes/1/line/numbers/2",
+                      "type": "integer"
+                    }
+                  ]
                 }
               }
             },
@@ -75,21 +109,27 @@
           "id": "http://jsonschema.net/outcomes/2",
           "type": "object",
           "properties": {
-            "lineResponse": {
-              "id": "http://jsonschema.net/outcomes/2/lineResponse",
+            "line": {
+              "id": "http://jsonschema.net/outcomes/2/line",
               "type": "object",
               "properties": {
-                "firstNumber": {
-                  "id": "http://jsonschema.net/outcomes/2/lineResponse/firstNumber",
-                  "type": "integer"
-                },
-                "secondNumber": {
-                  "id": "http://jsonschema.net/outcomes/2/lineResponse/secondNumber",
-                  "type": "integer"
-                },
-                "thirdNumber": {
-                  "id": "http://jsonschema.net/outcomes/2/lineResponse/thirdNumber",
-                  "type": "integer"
+                "numbers": {
+                  "id": "http://jsonschema.net/outcomes/2/line/numbers",
+                  "type": "array",
+                  "items": [
+                    {
+                      "id": "http://jsonschema.net/outcomes/2/line/numbers/0",
+                      "type": "integer"
+                    },
+                    {
+                      "id": "http://jsonschema.net/outcomes/2/line/numbers/1",
+                      "type": "integer"
+                    },
+                    {
+                      "id": "http://jsonschema.net/outcomes/2/line/numbers/2",
+                      "type": "integer"
+                    }
+                  ]
                 }
               }
             },
@@ -103,21 +143,27 @@
           "id": "http://jsonschema.net/outcomes/3",
           "type": "object",
           "properties": {
-            "lineResponse": {
-              "id": "http://jsonschema.net/outcomes/3/lineResponse",
+            "line": {
+              "id": "http://jsonschema.net/outcomes/3/line",
               "type": "object",
               "properties": {
-                "firstNumber": {
-                  "id": "http://jsonschema.net/outcomes/3/lineResponse/firstNumber",
-                  "type": "integer"
-                },
-                "secondNumber": {
-                  "id": "http://jsonschema.net/outcomes/3/lineResponse/secondNumber",
-                  "type": "integer"
-                },
-                "thirdNumber": {
-                  "id": "http://jsonschema.net/outcomes/3/lineResponse/thirdNumber",
-                  "type": "integer"
+                "numbers": {
+                  "id": "http://jsonschema.net/outcomes/3/line/numbers",
+                  "type": "array",
+                  "items": [
+                    {
+                      "id": "http://jsonschema.net/outcomes/3/line/numbers/0",
+                      "type": "integer"
+                    },
+                    {
+                      "id": "http://jsonschema.net/outcomes/3/line/numbers/1",
+                      "type": "integer"
+                    },
+                    {
+                      "id": "http://jsonschema.net/outcomes/3/line/numbers/2",
+                      "type": "integer"
+                    }
+                  ]
                 }
               }
             },
@@ -128,28 +174,12 @@
           }
         }
       ]
-    },
-    "_links": {
-      "id": "http://jsonschema.net/_links",
-      "type": "object",
-      "properties": {
-        "self": {
-          "id": "http://jsonschema.net/_links/self",
-          "type": "object",
-          "properties": {
-            "href": {
-              "id": "http://jsonschema.net/_links/self/href",
-              "type": "string"
-            }
-          }
-        }
-      }
     }
   },
   "required": [
+    "_links",
     "checkId",
     "ticketId",
-    "outcomes",
-    "_links"
+    "outcomes"
   ]
 }

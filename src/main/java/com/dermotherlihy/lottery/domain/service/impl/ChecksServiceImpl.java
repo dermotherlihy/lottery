@@ -10,6 +10,7 @@ import com.google.common.base.Optional;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -32,6 +33,7 @@ public class ChecksServiceImpl implements ChecksService {
 
 
     @Override
+    @Transactional
     public Check createCheck(long ticketId) {
         Optional<Ticket> optionalTicket = ticketsRepository.findTicket(ticketId);
         if(optionalTicket.isPresent()){

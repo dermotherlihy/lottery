@@ -1,10 +1,13 @@
 package com.dermotherlihy.lottery.rest.v1.mapper;
 
 import com.dermotherlihy.lottery.domain.model.Check;
+import com.dermotherlihy.lottery.domain.model.Line;
 import com.dermotherlihy.lottery.domain.model.Outcome;
 import com.dermotherlihy.lottery.rest.v1.resource.response.CheckResponse;
+import com.dermotherlihy.lottery.rest.v1.resource.response.LineResponse;
 import com.dermotherlihy.lottery.rest.v1.resource.response.OutcomeResponse;
 import com.dermotherlihy.lottery.utils.CheckTestData;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Iterator;
@@ -30,10 +33,13 @@ public class ChecksResponseMapperUTest {
         for(OutcomeResponse outcomeResponse : checkResponse.getOutcomes()){
             Outcome outcome = outcomeIterator.next();
             assertThat(outcomeResponse.getResult(), is(outcome.getResult()));
-            assertThat(outcomeResponse.getLineResponse().getFirstNumber(), is(outcome.getLine().getFirstNumber()));
-            assertThat(outcomeResponse.getLineResponse().getSecondNumber(), is(outcome.getLine().getSecondNumber()));
-            assertThat(outcomeResponse.getLineResponse().getThirdNumber(), is(outcome.getLine().getThirdNumber()));
+            assertLine(outcomeResponse.getLineResponse(),outcome.getLine());
         }
     }
 
+    private void assertLine(LineResponse responseLine, Line ticketLine) {
+        Assert.assertThat(responseLine.getNumbers().get(0), is(ticketLine.getFirstNumber()));
+        Assert.assertThat(responseLine.getNumbers().get(1), is(ticketLine.getSecondNumber()));
+        Assert.assertThat(responseLine.getNumbers().get(2), is(ticketLine.getThirdNumber()));
+    }
 }

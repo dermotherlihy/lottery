@@ -27,6 +27,8 @@ import static com.jayway.restassured.RestAssured.given;
 @IntegrationTest("server.port:0")
 public class BaseTestController {
 
+    public  static final int NUMBER_OF_LINES = 4;
+
     @Value("${local.server.port}")
     protected int serverPort;
 
@@ -59,7 +61,7 @@ public class BaseTestController {
     }
 
     protected long createTicketAndReturnId(){
-        TicketRequest ticketRequest = new TicketRequest(4);
+        TicketRequest ticketRequest = new TicketRequest(NUMBER_OF_LINES);
         String ticketURL = extractURLFromTicket(createTicket(ticketRequest));
         return extractId(ticketURL);
     }

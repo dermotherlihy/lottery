@@ -3,12 +3,14 @@ package com.dermotherlihy.lottery.rest.v1.resource.response;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.hateoas.ResourceSupport;
+import org.springframework.hateoas.core.Relation;
 
 import java.util.List;
 
 /**
  * Created by dermot.herlihy on 29/01/2016.
  */
+@Relation(collectionRelation = "ticketList")
 public class TicketResponse extends ResourceSupport {
 
     @JsonProperty("ticketId")
@@ -20,7 +22,7 @@ public class TicketResponse extends ResourceSupport {
     @JsonProperty("status")
     private String status;
 
-    @JsonCreator
+    @JsonCreator()
     public TicketResponse() {
 
     }

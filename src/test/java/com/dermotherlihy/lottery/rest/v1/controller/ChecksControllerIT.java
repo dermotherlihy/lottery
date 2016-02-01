@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 
 import static com.jayway.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.core.IsEqual.equalTo;
+import static org.hamcrest.core.IsNull.notNullValue;
 
 /**
  * Created by dermot.herlihy on 31/01/2016.
@@ -34,9 +35,13 @@ public class ChecksControllerIT extends BaseTestController {
                 .then()
                 .statusCode(HttpStatus.CREATED.value())
                 .body(matchesJsonSchemaInClasspath("checks/create-check-response.json"))
-                .body("ticketId", equalTo(ticketId.intValue()));
-    }
+                .body("checkId", notNullValue())
+                .body("ticketId", equalTo(ticketId.intValue()))
+                .body("outcomes.size()", equalTo(NUMBER_OF_LINES))
+                .body("outcomes[0].line.numbers", notNullValue())
+                .body("outcomes[0].result", notNullValue());
 
+    }
 
     @Test
     public void testGetCheckSucceeds() throws JsonProcessingException {
@@ -49,7 +54,10 @@ public class ChecksControllerIT extends BaseTestController {
                 .then()
                 .statusCode(HttpStatus.OK.value())
                 .body(matchesJsonSchemaInClasspath("checks/create-check-response.json"))
-                .body("ticketId", equalTo(ticketId.intValue()));
+                .body("ticketId", equalTo(ticketId.intValue()))
+                .body("outcomes.size()", equalTo(NUMBER_OF_LINES))
+                .body("outcomes[0].line.numbers",notNullValue())
+                .body("outcomes[0].result", notNullValue());
     }
     @Test
     public void testGetCheckFailsWhenCalledWithNonExistentId() throws JsonProcessingException {

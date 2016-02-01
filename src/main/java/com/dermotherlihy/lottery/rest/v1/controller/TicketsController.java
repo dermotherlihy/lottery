@@ -67,7 +67,6 @@ public class TicketsController {
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public PagedResources<Resource<TicketResponse>> getTickets(Pageable pageRequest, PagedResourcesAssembler<TicketResponse> assembler) {
-
         Page<Ticket> tickets = ticketsService.getTickets(pageRequest);
         Page<TicketResponse> ticketResponses = TicketsResponseMapper.mapTicketsPageToTicketsResponsePage(tickets);
         PagedResources<Resource<TicketResponse>> result = assembler.toResource(ticketResponses);

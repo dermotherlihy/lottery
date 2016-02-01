@@ -1,5 +1,6 @@
 package com.dermotherlihy.lottery.rest.v1.resource.response;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.hateoas.ResourceSupport;
 
 import java.util.List;
@@ -8,8 +9,11 @@ import java.util.List;
  * Created by dermot.herlihy on 29/01/2016.
  */
 public class CheckResponse extends ResourceSupport{
+    @JsonProperty("checkId")
     private long checkId;
+    @JsonProperty("ticketId")
     private long ticketId;
+    @JsonProperty("outcomes")
     private List<OutcomeResponse> outcomes;
 
 

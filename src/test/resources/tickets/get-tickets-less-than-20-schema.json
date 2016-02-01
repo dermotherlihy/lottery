@@ -7,113 +7,373 @@
       "id": "http://jsonschema.net/_embedded",
       "type": "object",
       "properties": {
-        "ticketResponseList": {
-          "id": "http://jsonschema.net/_embedded/ticketResponseList",
+        "ticketList": {
+          "id": "http://jsonschema.net/_embedded/ticketList",
           "type": "array",
-          "items": {
-            "id": "http://jsonschema.net/_embedded/ticketResponseList/0",
-            "type": "object",
-            "properties": {
-              "ticketId": {
-                "id": "http://jsonschema.net/_embedded/ticketResponseList/0/ticketId",
-                "type": "integer"
+          "items": [
+            {
+              "id": "http://jsonschema.net/_embedded/ticketList/0",
+              "type": "object",
+              "properties": {
+                "ticketId": {
+                  "id": "http://jsonschema.net/_embedded/ticketList/0/ticketId",
+                  "type": "integer"
+                },
+                "lines": {
+                  "id": "http://jsonschema.net/_embedded/ticketList/0/lines",
+                  "type": "array",
+                  "items": [
+                    {
+                      "id": "http://jsonschema.net/_embedded/ticketList/0/lines/0",
+                      "type": "object",
+                      "properties": {
+                        "numbers": {
+                          "id": "http://jsonschema.net/_embedded/ticketList/0/lines/0/numbers",
+                          "type": "array",
+                          "items": [
+                            {
+                              "id": "http://jsonschema.net/_embedded/ticketList/0/lines/0/numbers/0",
+                              "type": "integer"
+                            },
+                            {
+                              "id": "http://jsonschema.net/_embedded/ticketList/0/lines/0/numbers/1",
+                              "type": "integer"
+                            },
+                            {
+                              "id": "http://jsonschema.net/_embedded/ticketList/0/lines/0/numbers/2",
+                              "type": "integer"
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "id": "http://jsonschema.net/_embedded/ticketList/0/lines/1",
+                      "type": "object",
+                      "properties": {
+                        "numbers": {
+                          "id": "http://jsonschema.net/_embedded/ticketList/0/lines/1/numbers",
+                          "type": "array",
+                          "items": [
+                            {
+                              "id": "http://jsonschema.net/_embedded/ticketList/0/lines/1/numbers/0",
+                              "type": "integer"
+                            },
+                            {
+                              "id": "http://jsonschema.net/_embedded/ticketList/0/lines/1/numbers/1",
+                              "type": "integer"
+                            },
+                            {
+                              "id": "http://jsonschema.net/_embedded/ticketList/0/lines/1/numbers/2",
+                              "type": "integer"
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "id": "http://jsonschema.net/_embedded/ticketList/0/lines/2",
+                      "type": "object",
+                      "properties": {
+                        "numbers": {
+                          "id": "http://jsonschema.net/_embedded/ticketList/0/lines/2/numbers",
+                          "type": "array",
+                          "items": [
+                            {
+                              "id": "http://jsonschema.net/_embedded/ticketList/0/lines/2/numbers/0",
+                              "type": "integer"
+                            },
+                            {
+                              "id": "http://jsonschema.net/_embedded/ticketList/0/lines/2/numbers/1",
+                              "type": "integer"
+                            },
+                            {
+                              "id": "http://jsonschema.net/_embedded/ticketList/0/lines/2/numbers/2",
+                              "type": "integer"
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "id": "http://jsonschema.net/_embedded/ticketList/0/lines/3",
+                      "type": "object",
+                      "properties": {
+                        "numbers": {
+                          "id": "http://jsonschema.net/_embedded/ticketList/0/lines/3/numbers",
+                          "type": "array",
+                          "items": [
+                            {
+                              "id": "http://jsonschema.net/_embedded/ticketList/0/lines/3/numbers/0",
+                              "type": "integer"
+                            },
+                            {
+                              "id": "http://jsonschema.net/_embedded/ticketList/0/lines/3/numbers/1",
+                              "type": "integer"
+                            },
+                            {
+                              "id": "http://jsonschema.net/_embedded/ticketList/0/lines/3/numbers/2",
+                              "type": "integer"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                },
+                "status": {
+                  "id": "http://jsonschema.net/_embedded/ticketList/0/status",
+                  "type": "string"
+                }
               },
-              "lines": {
-                "id": "http://jsonschema.net/_embedded/ticketResponseList/0/lines",
-                "type": "array",
-                "items": [
-                  {
-                    "id": "http://jsonschema.net/_embedded/ticketResponseList/0/lines/0",
-                    "type": "object",
-                    "properties": {
-                      "firstNumber": {
-                        "id": "http://jsonschema.net/_embedded/ticketResponseList/0/lines/0/firstNumber",
-                        "type": "integer"
-                      },
-                      "secondNumber": {
-                        "id": "http://jsonschema.net/_embedded/ticketResponseList/0/lines/0/secondNumber",
-                        "type": "integer"
-                      },
-                      "thirdNumber": {
-                        "id": "http://jsonschema.net/_embedded/ticketResponseList/0/lines/0/thirdNumber",
-                        "type": "integer"
+              "required": [
+                "ticketId",
+                "lines",
+                "status"
+              ]
+            },
+            {
+              "id": "http://jsonschema.net/_embedded/ticketList/1",
+              "type": "object",
+              "properties": {
+                "ticketId": {
+                  "id": "http://jsonschema.net/_embedded/ticketList/1/ticketId",
+                  "type": "integer"
+                },
+                "lines": {
+                  "id": "http://jsonschema.net/_embedded/ticketList/1/lines",
+                  "type": "array",
+                  "items": [
+                    {
+                      "id": "http://jsonschema.net/_embedded/ticketList/1/lines/0",
+                      "type": "object",
+                      "properties": {
+                        "numbers": {
+                          "id": "http://jsonschema.net/_embedded/ticketList/1/lines/0/numbers",
+                          "type": "array",
+                          "items": [
+                            {
+                              "id": "http://jsonschema.net/_embedded/ticketList/1/lines/0/numbers/0",
+                              "type": "integer"
+                            },
+                            {
+                              "id": "http://jsonschema.net/_embedded/ticketList/1/lines/0/numbers/1",
+                              "type": "integer"
+                            },
+                            {
+                              "id": "http://jsonschema.net/_embedded/ticketList/1/lines/0/numbers/2",
+                              "type": "integer"
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "id": "http://jsonschema.net/_embedded/ticketList/1/lines/1",
+                      "type": "object",
+                      "properties": {
+                        "numbers": {
+                          "id": "http://jsonschema.net/_embedded/ticketList/1/lines/1/numbers",
+                          "type": "array",
+                          "items": [
+                            {
+                              "id": "http://jsonschema.net/_embedded/ticketList/1/lines/1/numbers/0",
+                              "type": "integer"
+                            },
+                            {
+                              "id": "http://jsonschema.net/_embedded/ticketList/1/lines/1/numbers/1",
+                              "type": "integer"
+                            },
+                            {
+                              "id": "http://jsonschema.net/_embedded/ticketList/1/lines/1/numbers/2",
+                              "type": "integer"
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "id": "http://jsonschema.net/_embedded/ticketList/1/lines/2",
+                      "type": "object",
+                      "properties": {
+                        "numbers": {
+                          "id": "http://jsonschema.net/_embedded/ticketList/1/lines/2/numbers",
+                          "type": "array",
+                          "items": [
+                            {
+                              "id": "http://jsonschema.net/_embedded/ticketList/1/lines/2/numbers/0",
+                              "type": "integer"
+                            },
+                            {
+                              "id": "http://jsonschema.net/_embedded/ticketList/1/lines/2/numbers/1",
+                              "type": "integer"
+                            },
+                            {
+                              "id": "http://jsonschema.net/_embedded/ticketList/1/lines/2/numbers/2",
+                              "type": "integer"
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "id": "http://jsonschema.net/_embedded/ticketList/1/lines/3",
+                      "type": "object",
+                      "properties": {
+                        "numbers": {
+                          "id": "http://jsonschema.net/_embedded/ticketList/1/lines/3/numbers",
+                          "type": "array",
+                          "items": [
+                            {
+                              "id": "http://jsonschema.net/_embedded/ticketList/1/lines/3/numbers/0",
+                              "type": "integer"
+                            },
+                            {
+                              "id": "http://jsonschema.net/_embedded/ticketList/1/lines/3/numbers/1",
+                              "type": "integer"
+                            },
+                            {
+                              "id": "http://jsonschema.net/_embedded/ticketList/1/lines/3/numbers/2",
+                              "type": "integer"
+                            }
+                          ]
+                        }
                       }
                     }
-                  },
-                  {
-                    "id": "http://jsonschema.net/_embedded/ticketResponseList/0/lines/1",
-                    "type": "object",
-                    "properties": {
-                      "firstNumber": {
-                        "id": "http://jsonschema.net/_embedded/ticketResponseList/0/lines/1/firstNumber",
-                        "type": "integer"
-                      },
-                      "secondNumber": {
-                        "id": "http://jsonschema.net/_embedded/ticketResponseList/0/lines/1/secondNumber",
-                        "type": "integer"
-                      },
-                      "thirdNumber": {
-                        "id": "http://jsonschema.net/_embedded/ticketResponseList/0/lines/1/thirdNumber",
-                        "type": "integer"
-                      }
-                    }
-                  },
-                  {
-                    "id": "http://jsonschema.net/_embedded/ticketResponseList/0/lines/2",
-                    "type": "object",
-                    "properties": {
-                      "firstNumber": {
-                        "id": "http://jsonschema.net/_embedded/ticketResponseList/0/lines/2/firstNumber",
-                        "type": "integer"
-                      },
-                      "secondNumber": {
-                        "id": "http://jsonschema.net/_embedded/ticketResponseList/0/lines/2/secondNumber",
-                        "type": "integer"
-                      },
-                      "thirdNumber": {
-                        "id": "http://jsonschema.net/_embedded/ticketResponseList/0/lines/2/thirdNumber",
-                        "type": "integer"
-                      }
-                    }
-                  },
-                  {
-                    "id": "http://jsonschema.net/_embedded/ticketResponseList/0/lines/3",
-                    "type": "object",
-                    "properties": {
-                      "firstNumber": {
-                        "id": "http://jsonschema.net/_embedded/ticketResponseList/0/lines/3/firstNumber",
-                        "type": "integer"
-                      },
-                      "secondNumber": {
-                        "id": "http://jsonschema.net/_embedded/ticketResponseList/0/lines/3/secondNumber",
-                        "type": "integer"
-                      },
-                      "thirdNumber": {
-                        "id": "http://jsonschema.net/_embedded/ticketResponseList/0/lines/3/thirdNumber",
-                        "type": "integer"
-                      }
-                    }
-                  }
-                ]
-              },
-              "status": {
-                "id": "http://jsonschema.net/_embedded/ticketResponseList/0/status",
-                "type": "string"
+                  ]
+                },
+                "status": {
+                  "id": "http://jsonschema.net/_embedded/ticketList/1/status",
+                  "type": "string"
+                }
               }
             },
-            "required": [
-              "ticketId",
-              "lines",
-              "status"
-            ]
-          },
+            {
+              "id": "http://jsonschema.net/_embedded/ticketList/2",
+              "type": "object",
+              "properties": {
+                "ticketId": {
+                  "id": "http://jsonschema.net/_embedded/ticketList/2/ticketId",
+                  "type": "integer"
+                },
+                "lines": {
+                  "id": "http://jsonschema.net/_embedded/ticketList/2/lines",
+                  "type": "array",
+                  "items": [
+                    {
+                      "id": "http://jsonschema.net/_embedded/ticketList/2/lines/0",
+                      "type": "object",
+                      "properties": {
+                        "numbers": {
+                          "id": "http://jsonschema.net/_embedded/ticketList/2/lines/0/numbers",
+                          "type": "array",
+                          "items": [
+                            {
+                              "id": "http://jsonschema.net/_embedded/ticketList/2/lines/0/numbers/0",
+                              "type": "integer"
+                            },
+                            {
+                              "id": "http://jsonschema.net/_embedded/ticketList/2/lines/0/numbers/1",
+                              "type": "integer"
+                            },
+                            {
+                              "id": "http://jsonschema.net/_embedded/ticketList/2/lines/0/numbers/2",
+                              "type": "integer"
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "id": "http://jsonschema.net/_embedded/ticketList/2/lines/1",
+                      "type": "object",
+                      "properties": {
+                        "numbers": {
+                          "id": "http://jsonschema.net/_embedded/ticketList/2/lines/1/numbers",
+                          "type": "array",
+                          "items": [
+                            {
+                              "id": "http://jsonschema.net/_embedded/ticketList/2/lines/1/numbers/0",
+                              "type": "integer"
+                            },
+                            {
+                              "id": "http://jsonschema.net/_embedded/ticketList/2/lines/1/numbers/1",
+                              "type": "integer"
+                            },
+                            {
+                              "id": "http://jsonschema.net/_embedded/ticketList/2/lines/1/numbers/2",
+                              "type": "integer"
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "id": "http://jsonschema.net/_embedded/ticketList/2/lines/2",
+                      "type": "object",
+                      "properties": {
+                        "numbers": {
+                          "id": "http://jsonschema.net/_embedded/ticketList/2/lines/2/numbers",
+                          "type": "array",
+                          "items": [
+                            {
+                              "id": "http://jsonschema.net/_embedded/ticketList/2/lines/2/numbers/0",
+                              "type": "integer"
+                            },
+                            {
+                              "id": "http://jsonschema.net/_embedded/ticketList/2/lines/2/numbers/1",
+                              "type": "integer"
+                            },
+                            {
+                              "id": "http://jsonschema.net/_embedded/ticketList/2/lines/2/numbers/2",
+                              "type": "integer"
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "id": "http://jsonschema.net/_embedded/ticketList/2/lines/3",
+                      "type": "object",
+                      "properties": {
+                        "numbers": {
+                          "id": "http://jsonschema.net/_embedded/ticketList/2/lines/3/numbers",
+                          "type": "array",
+                          "items": [
+                            {
+                              "id": "http://jsonschema.net/_embedded/ticketList/2/lines/3/numbers/0",
+                              "type": "integer"
+                            },
+                            {
+                              "id": "http://jsonschema.net/_embedded/ticketList/2/lines/3/numbers/1",
+                              "type": "integer"
+                            },
+                            {
+                              "id": "http://jsonschema.net/_embedded/ticketList/2/lines/3/numbers/2",
+                              "type": "integer"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                },
+                "status": {
+                  "id": "http://jsonschema.net/_embedded/ticketList/2/status",
+                  "type": "string"
+                }
+              }
+            }
+          ],
           "required": [
-            "0"
+            "0",
+            "1",
+            "2"
           ]
         }
       },
       "required": [
-        "ticketResponseList"
+        "ticketList"
       ]
     },
     "_links": {
